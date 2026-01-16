@@ -132,13 +132,14 @@ const Hero = () => {
               </motion.a>
               <motion.a
                 href={personalInfo.resumeUrl}
-                download
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-secondary flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FiDownload />
-                Download Resume
+                View Resume
               </motion.a>
             </motion.div>
 

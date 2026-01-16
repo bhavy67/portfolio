@@ -1,5 +1,6 @@
 import personalConfig from '../config/personal-info.json';
 import profileImage from '../assets/Bhavy_Ladani_Profile_Image.jpg';
+import resumePdf from '../assets/BhavyLadani_SoftwareDeveloper.pdf';
 
 // Personal Information - Now sourced from central config
 export const personalInfo = {
@@ -14,7 +15,7 @@ export const personalInfo = {
   phone: personalConfig.contact.phone,
   bio: personalConfig.personal.bio,
   yearsOfExperience: personalConfig.personal.yearsOfExperience,
-  resumeUrl: personalConfig.assets.resume,
+  resumeUrl: resumePdf, // Using imported PDF from assets
   profileImage: profileImage, // Using imported image from assets
   website: personalConfig.contact.website,
   social: {

@@ -47,7 +47,7 @@
     }
   },
   "assets": {
-    "resume": "/resume.pdf",
+    "resume": "/src/assets/BhavyLadani_SoftwareDeveloper.pdf",
     "profileImage": "/src/assets/Bhavy_Ladani_Profile_Image.jpg",
     "ogImage": "https://bhavyladani.vercel.app/og-image.jpg"
   },
