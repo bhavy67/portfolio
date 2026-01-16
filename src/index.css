@@ -1,0 +1,133 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #7C3AED;
+    --color-accent: #A855F7;
+    --color-background: #FFFFFF;
+    --color-text: #1E293B;
+  }
+
+  * {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    @apply bg-white dark:bg-dark-950;
+    @apply text-dark-900 dark:text-dark-100;
+    @apply transition-colors duration-300;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  ::selection {
+    @apply bg-primary-500 text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-100 dark:bg-dark-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    @apply rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-accent);
+  }
+}
+
+@layer components {
+  /* Glassmorphism Effect */
+  .glass {
+    @apply bg-white/70 dark:bg-dark-900/70;
+    @apply backdrop-blur-lg backdrop-saturate-150;
+    @apply border border-white/20 dark:border-dark-700/50;
+  }
+
+  /* Neumorphism Effect */
+  .neu-light {
+    box-shadow: 
+      8px 8px 16px rgba(0, 0, 0, 0.1),
+      -8px -8px 16px rgba(255, 255, 255, 0.9);
+  }
+
+  .neu-dark {
+    box-shadow: 
+      8px 8px 16px rgba(0, 0, 0, 0.4),
+      -8px -8px 16px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-600 via-accent-600 to-primary-700;
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-medium;
+    @apply bg-primary-600 text-white;
+    @apply hover:bg-primary-700 active:bg-primary-800;
+    @apply transition-all duration-300;
+    @apply shadow-lg hover:shadow-xl;
+    @apply transform hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-medium;
+    @apply bg-transparent border-2 border-primary-600 text-primary-600;
+    @apply hover:bg-primary-600 hover:text-white;
+    @apply transition-all duration-300;
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-white dark:bg-dark-800;
+    @apply border border-dark-200 dark:border-dark-700;
+    @apply rounded-xl shadow-lg;
+    @apply transition-all duration-300;
+    @apply hover:shadow-2xl hover:-translate-y-1;
+  }
+}
+
+@layer utilities {
+  /* Custom Animations */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+
+  /* Text Gradient Animation */
+  .text-gradient-animate {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      90deg,
+      #a855f7,
+      #d946ef,
+      #c026d3,
+      #a855f7
+    );
+    background-size: 200% auto;
+    animation: gradient 3s linear infinite;
+  }
+}

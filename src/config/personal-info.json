@@ -1,0 +1,59 @@
+{
+  "personal": {
+    "firstName": "Bhavy",
+    "lastName": "Ladani",
+    "fullName": "Bhavy Ladani",
+    "initials": "BL",
+    "title": "Full Stack Software Developer",
+    "tagline": "Building scalable web solutions with modern technologies",
+    "bio": "Passionate software developer with 3 years of experience in building responsive, user-friendly web applications. Specialized in React, Node.js, and cloud technologies. Love solving complex problems and creating elegant solutions.",
+    "yearsOfExperience": "3+",
+    "location": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "full": "Ahmedabad, Gujarat, India"
+    }
+  },
+  "contact": {
+    "email": "your.email@example.com",
+    "phone": "+918780822212",
+    "website": "https://bhavyladani.vercel.app"
+  },
+  "social": {
+    "github": {
+      "username": "bhavy67",
+      "url": "https://github.com/bhavy67"
+    },
+    "linkedin": {
+      "username": "bhavyladani",
+      "url": "https://linkedin.com/in/bhavyladani"
+    },
+    "leetcode": {
+      "username": "bhavyladani",
+      "url": "https://leetcode.com/bhavyladani"
+    },
+    "twitter": {
+      "username": "",
+      "url": ""
+    },
+    "medium": {
+      "username": "bhavyladani",
+      "url": "https://medium.com/@bhavyladani"
+    },
+    "devto": {
+      "username": "bhavyladani",
+      "url": "https://dev.to/bhavyladani"
+    }
+  },
+  "assets": {
+    "resume": "/resume.pdf",
+    "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    "ogImage": "https://bhavyladani.vercel.app/og-image.jpg"
+  },
+  "meta": {
+    "siteTitle": "Bhavy Ladani - Full Stack Software Developer | Portfolio",
+    "siteDescription": "Experienced Full Stack Developer specializing in React, Node.js, and modern web technologies. Building scalable web solutions with 3+ years of experience.",
+    "keywords": ["Bhavy Ladani", "software developer", "full stack developer", "react developer", "web development", "portfolio"]
+  }
+}
