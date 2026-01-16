@@ -1,4 +1,5 @@
 import personalConfig from '../config/personal-info.json';
+import profileImage from '../assets/Bhavy_Ladani_Profile_Image.jpg';
 
 // Personal Information - Now sourced from central config
 export const personalInfo = {
@@ -14,7 +15,7 @@ export const personalInfo = {
   bio: personalConfig.personal.bio,
   yearsOfExperience: personalConfig.personal.yearsOfExperience,
   resumeUrl: personalConfig.assets.resume,
-  profileImage: personalConfig.assets.profileImage,
+  profileImage: profileImage, // Using imported image from assets
   website: personalConfig.contact.website,
   social: {
     github: personalConfig.social.github.url,

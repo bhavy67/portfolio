@@ -48,7 +48,7 @@
   },
   "assets": {
     "resume": "/resume.pdf",
-    "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    "profileImage": "/src/assets/Bhavy_Ladani_Profile_Image.jpg",
     "ogImage": "https://bhavyladani.vercel.app/og-image.jpg"
   },
   "meta": {
