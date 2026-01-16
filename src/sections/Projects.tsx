@@ -1,16 +1,14 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FiExternalLink, FiGithub, FiFilter } from 'react-icons/fi';
-import { projects, projectCategories } from '../data/projects';
+import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import { projects } from '../data/projects';
 
 const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
-  const filteredProjects =
-    selectedCategory === 'All'
-      ? projects
-      : projects.filter((project) => project.category === selectedCategory);
+  // Removed category filtering - showing all projects
+  // const [selectedCategory, setSelectedCategory] = useState('All');
+  // const filteredProjects = selectedCategory === 'All' ? projects : projects.filter(...);
 
   return (
     <section id="projects" className="section-container">
@@ -41,38 +39,24 @@ const Projects = () => {
           </motion.p>
         </div>
 
-        {/* Filter Buttons */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
+        {/* Removed Filter Buttons Section */}
+        {/* 
+        <motion.div className="flex flex-wrap justify-center gap-3 mb-12">
           <FiFilter className="text-dark-600 dark:text-dark-400 mt-2" size={20} />
           {projectCategories.map((category) => (
-            <motion.button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full font-medium transition-all ${
-                selectedCategory === category
-                  ? 'bg-primary-600 text-white shadow-lg'
-                  : 'bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:bg-dark-200 dark:hover:bg-dark-700'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.button key={category} onClick={() => setSelectedCategory(category)}>
               {category}
             </motion.button>
           ))}
         </motion.div>
+        */}
 
         {/* Projects Grid */}
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           layout
         >
-          {filteredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               layout

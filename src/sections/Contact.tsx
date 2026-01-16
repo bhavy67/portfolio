@@ -101,7 +101,17 @@ const Contact = () => {
               transition={{ delay: 0 }}
               whileHover={{ x: 10 }}
             >
-              <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+              <div 
+                className="p-3 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 transition-all duration-300"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = currentTheme.isDark ? `${currentTheme.primary}20` : `${currentTheme.primary}10`;
+                  e.currentTarget.style.color = currentTheme.primary;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '';
+                  e.currentTarget.style.color = '';
+                }}
+              >
                 <FiLinkedin size={24} />
               </div>
               <div>
@@ -125,7 +135,17 @@ const Contact = () => {
                   transition={{ delay: (index + 1) * 0.1 }}
                   whileHover={{ x: 10 }}
                 >
-                  <div className="p-3 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                  <div 
+                    className="p-3 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 transition-all duration-300"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = currentTheme.isDark ? `${currentTheme.primary}20` : `${currentTheme.primary}10`;
+                      e.currentTarget.style.color = currentTheme.primary;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '';
+                      e.currentTarget.style.color = '';
+                    }}
+                  >
                     <info.icon size={24} />
                   </div>
                   <div>
