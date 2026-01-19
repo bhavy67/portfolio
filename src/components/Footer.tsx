@@ -126,12 +126,12 @@ const Footer = () => {
             className="text-dark-400 text-sm flex items-center gap-2"
             whileHover={{ scale: 1.05 }}
           >
-            Made with <motion.span
+            Crafted with <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             >
               <FiHeart className="text-red-500" />
-            </motion.span> using React & TypeScript
+            </motion.span> and lots of ☕
           </motion.p>
         </motion.div>
       </div>
