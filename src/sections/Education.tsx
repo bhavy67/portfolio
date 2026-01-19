@@ -33,7 +33,13 @@ const Education = () => {
         </div>
 
         {/* Education Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className={`grid gap-8 max-w-5xl mx-auto ${
+          education.length === 1 
+            ? 'md:grid-cols-1 max-w-3xl' 
+            : education.length === 2 
+            ? 'md:grid-cols-2' 
+            : 'md:grid-cols-2 lg:grid-cols-3'
+        }`}>
           {education.map((edu, index) => (
             <motion.div
               key={edu.id}

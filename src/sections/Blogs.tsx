@@ -38,7 +38,11 @@ const Blogs = () => {
         </div>
 
         {/* Featured Blogs */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className={`grid gap-8 mb-12 ${
+          blogPosts.filter((post) => post.featured).length === 1 
+            ? 'lg:grid-cols-1 max-w-3xl mx-auto' 
+            : 'lg:grid-cols-2'
+        }`}>
           {blogPosts
             .filter((post) => post.featured)
             .map((post, index) => {
@@ -129,7 +133,13 @@ const Blogs = () => {
         </div>
 
         {/* Other Blogs */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={`grid gap-6 ${
+          blogPosts.filter((post) => !post.featured).length === 1 
+            ? 'md:grid-cols-1 max-w-2xl mx-auto' 
+            : blogPosts.filter((post) => !post.featured).length === 2 
+            ? 'md:grid-cols-2 max-w-4xl mx-auto' 
+            : 'md:grid-cols-2 lg:grid-cols-3'
+        }`}>
           {blogPosts
             .filter((post) => !post.featured)
             .map((post, index) => {

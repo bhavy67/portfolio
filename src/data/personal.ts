@@ -96,18 +96,18 @@ export const experiences = [
 
 // Education Data
 export const education = [
-  {
-    id: 1,
-    degree: "Post Graduate Degree in Data Science",
-    institution: "International Institute of Information Technology",
-    location: "Bangalore, India",
-    year: "2025 - 2027",
-    gpa: "...",
-    description: "Focused on Data Science, Machine Learning, and Artificial Intelligence",
-    achievements: [
-        "Relevant Coursework: Machine Learning, Deep Learning, Big Data Analytics",
-    ],
-  },
+//   {
+//     id: 1,
+//     degree: "Post Graduate Degree in Data Science",
+//     institution: "International Institute of Information Technology",
+//     location: "Bangalore, India",
+//     year: "2025 - 2027",
+//     gpa: "...",
+//     description: "Focused on Data Science, Machine Learning, and Artificial Intelligence",
+//     achievements: [
+//         "Relevant Coursework: Machine Learning, Deep Learning, Big Data Analytics",
+//     ],
+//   },
   {
     id: 2,
     degree: "Bachelor of Technology in Computer Science",
