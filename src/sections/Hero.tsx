@@ -34,16 +34,16 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 pb-8 px-4 sm:px-6 sm:pt-20"
     >
       {/* Minimal Animated Background - Common for all themes */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         {/* Subtle gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-dark-950 dark:via-dark-900 dark:to-dark-950" />
         
         {/* Minimal Animated Shapes with theme colors */}
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-primary-400/10 dark:bg-primary-600/10 rounded-full blur-3xl"
+          className="hidden sm:block absolute top-20 left-10 w-72 h-72 bg-primary-400/10 dark:bg-primary-600/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
@@ -56,7 +56,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent-400/10 dark:bg-accent-600/10 rounded-full blur-3xl"
+          className="hidden sm:block absolute bottom-20 right-10 w-96 h-96 bg-accent-400/10 dark:bg-accent-600/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             x: [0, -50, 0],
@@ -69,7 +69,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 w-80 h-80 bg-primary-300/20 dark:bg-primary-700/20 rounded-full blur-3xl"
+          className="hidden sm:block absolute top-1/2 left-1/2 w-80 h-80 bg-primary-300/20 dark:bg-primary-700/20 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.1, 1],
             rotate: [0, 180, 360],
@@ -82,32 +82,32 @@ const Hero = () => {
         />
       </div>
 
-      <div className="section-container">
+      <div className="section-container w-full">
         <motion.div
-          className="grid lg:grid-cols-2 gap-12 items-center"
+          className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-3 sm:space-y-6 lg:space-y-8 text-center lg:text-left">
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               variants={itemVariants}
             >
               Hi, I'm{' '}
-              <span className="gradient-text">{personalInfo.name}</span>
+              <span className="gradient-text block sm:inline">{personalInfo.name}</span>
             </motion.h1>
 
             <motion.h2
-              className="text-2xl md:text-3xl font-semibold text-dark-600 dark:text-dark-400"
+              className="text-base sm:text-2xl md:text-3xl font-semibold text-dark-600 dark:text-dark-400"
               variants={itemVariants}
             >
               {personalInfo.title}
             </motion.h2>
 
             <motion.p
-              className="text-lg text-dark-600 dark:text-dark-400 max-w-xl"
+              className="text-xs sm:text-lg text-dark-600 dark:text-dark-400 max-w-xl mx-auto lg:mx-0 leading-relaxed"
               variants={itemVariants}
             >
               {personalInfo.tagline}
@@ -115,12 +115,12 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <motion.div
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
               variants={itemVariants}
             >
               <motion.a
                 href="#projects"
-                className="btn-primary"
+                className="btn-primary text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={(e) => {
@@ -134,7 +134,7 @@ const Hero = () => {
                 href={personalInfo.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary flex items-center gap-2"
+                className="btn-secondary flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -145,7 +145,7 @@ const Hero = () => {
 
             {/* Social Links */}
             <motion.div
-              className="flex gap-4"
+              className="flex gap-2 sm:gap-4 justify-center lg:justify-start"
               variants={itemVariants}
             >
               {socialLinks.map((social, index) => (
@@ -154,12 +154,12 @@ const Hero = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                  className="p-2 sm:p-3 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label={social.label}
                 >
-                  <social.icon size={20} />
+                  <social.icon className="text-base sm:text-xl" />
                 </motion.a>
               ))}
             </motion.div>
@@ -167,10 +167,10 @@ const Hero = () => {
 
           {/* Right Content - Profile Image */}
           <motion.div
-            className="relative"
+            className="relative order-first lg:order-last"
             variants={itemVariants}
           >
-            <div className="relative w-full max-w-md mx-auto">
+            <div className="relative w-48 sm:max-w-sm md:max-w-md mx-auto">
               {/* Decorative Elements */}
               <motion.div
                 className="absolute -inset-4 bg-gradient-to-r from-primary-600 via-accent-600 to-primary-700 rounded-full blur-2xl opacity-30"
@@ -187,7 +187,7 @@ const Hero = () => {
               
               {/* Profile Image */}
               <motion.div
-                className="relative rounded-full overflow-hidden aspect-square border-8 border-white dark:border-dark-800 shadow-2xl"
+                className="relative rounded-full overflow-hidden aspect-square border-2 sm:border-8 border-white dark:border-dark-800 shadow-2xl"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
@@ -200,14 +200,14 @@ const Hero = () => {
 
               {/* Floating Badge */}
               <motion.div
-                className="absolute -bottom-4 -right-4 glass rounded-2xl p-4 shadow-xl"
+                className="absolute -bottom-1 -right-1 sm:-bottom-4 sm:-right-4 glass rounded-lg sm:rounded-2xl p-2 sm:p-4 shadow-xl"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 1, duration: 0.5 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
-                <p className="text-3xl font-bold text-primary-600">3+</p>
-                <p className="text-sm text-dark-600 dark:text-dark-400">Years Exp</p>
+                <p className="text-lg sm:text-3xl font-bold text-primary-600">3+</p>
+                <p className="text-[10px] sm:text-sm text-dark-600 dark:text-dark-400">Years Exp</p>
               </motion.div>
             </div>
           </motion.div>
@@ -215,7 +215,7 @@ const Hero = () => {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.5 }}

@@ -40,8 +40,8 @@ const Navbar = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'glass shadow-lg py-4'
-            : 'bg-transparent py-6'
+            ? 'glass shadow-lg py-3 md:py-4'
+            : 'bg-transparent py-4 md:py-6'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -88,15 +88,16 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex items-center gap-4 md:hidden">
+            <div className="flex items-center gap-3 md:hidden">
               <ThemeSwitcher />
 
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300"
+                className="p-2.5 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:bg-dark-200 dark:hover:bg-dark-700 transition-colors"
                 whileTap={{ scale: 0.9 }}
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
               >
-                {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+                {isOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
               </motion.button>
             </div>
           </div>
@@ -118,7 +119,7 @@ const Navbar = () => {
 
         {/* Menu Content */}
         <motion.div
-          className="absolute top-20 right-4 left-4 glass rounded-2xl p-8 shadow-2xl"
+          className="absolute top-20 right-4 left-4 max-h-[calc(100vh-7rem)] overflow-y-auto glass rounded-2xl p-6 shadow-2xl"
           initial={{ opacity: 0, y: -20, scale: 0.95 }}
           animate={{
             opacity: isOpen ? 1 : 0,
@@ -127,12 +128,12 @@ const Navbar = () => {
           }}
           transition={{ duration: 0.3 }}
         >
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             {navLinks.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.href}
-                className="text-lg font-medium text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 py-2 transition-colors"
+                className="text-base font-medium text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 py-3 px-4 rounded-lg hover:bg-dark-100 dark:hover:bg-dark-800 transition-colors"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{
                   opacity: isOpen ? 1 : 0,

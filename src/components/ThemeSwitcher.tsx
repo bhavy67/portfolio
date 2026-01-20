@@ -12,12 +12,12 @@ const ThemeSwitcher = () => {
       {/* Theme Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2.5 rounded-xl bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:bg-dark-200 dark:hover:bg-dark-700 transition-colors shadow-lg"
+        className="p-2.5 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:bg-dark-200 dark:hover:bg-dark-700 transition-colors shadow-lg"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Change theme"
       >
-        <span className="text-2xl">{currentTheme.icon}</span>
+        <span className="text-2xl block leading-none">{currentTheme.icon}</span>
       </motion.button>
 
       {/* Theme Dropdown */}
@@ -91,7 +91,7 @@ const ThemeSwitcher = () => {
                           animate={{ scale: 1 }}
                           className="absolute -top-1 -right-1 bg-primary-500 rounded-full p-1"
                         >
-                          <HiCheckCircle size={16} className="text-white" />
+                          <HiCheckCircle className="w-4 h-4 text-white" />
                         </motion.div>
                       )}
                     </motion.button>

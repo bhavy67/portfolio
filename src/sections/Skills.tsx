@@ -24,9 +24,9 @@ const Skills = () => {
         transition={{ duration: 0.6 }}
       >
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -34,7 +34,7 @@ const Skills = () => {
             Skills & <span className="gradient-text">Technologies</span>
           </motion.h2>
           <motion.p
-            className="text-dark-600 dark:text-dark-400 text-lg max-w-2xl mx-auto"
+            className="text-dark-600 dark:text-dark-400 text-base sm:text-lg max-w-2xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -45,26 +45,26 @@ const Skills = () => {
         </div>
 
         {/* Skills Grid - Test Tube Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {categories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              className="card p-6"
+              className="card p-4 sm:p-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: catIndex * 0.1 }}
             >
               {/* Category Header */}
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-dark-900 dark:text-white mb-2">
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-bold text-dark-900 dark:text-white mb-2">
                   {category.title}
                 </h3>
-                <div className={`h-1 w-16 rounded-full bg-gradient-to-r ${category.gradient}`} />
+                <div className={`h-1 w-12 sm:w-16 rounded-full bg-gradient-to-r ${category.gradient}`} />
               </div>
 
               {/* Test Tube Skills */}
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {category.data.map((skill, index) => {
                   const Icon = getIcon(skill.icon);
                   return (
@@ -77,26 +77,26 @@ const Skills = () => {
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                     >
                       {/* Test Tube Container */}
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         {/* Icon Circle */}
                         <motion.div
-                          className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br ${category.gradient} flex items-center justify-center text-white shadow-lg`}
+                          className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br ${category.gradient} flex items-center justify-center text-white shadow-lg`}
                           whileHover={{ scale: 1.1, rotate: 360 }}
                           transition={{ duration: 0.5 }}
                         >
-                          <Icon size={20} />
+                          <Icon size={16} className="sm:w-5 sm:h-5" />
                         </motion.div>
 
                         {/* Test Tube */}
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="text-sm font-medium text-dark-900 dark:text-white">
+                            <span className="text-xs sm:text-sm font-medium text-dark-900 dark:text-white truncate">
                               {skill.name}
                             </span>
                           </div>
                           
                           {/* Tube Container */}
-                          <div className="relative h-6 bg-dark-200 dark:bg-dark-700 rounded-full overflow-hidden shadow-inner">
+                          <div className="relative h-5 sm:h-6 bg-dark-200 dark:bg-dark-700 rounded-full overflow-hidden shadow-inner">
                             {/* Liquid Fill */}
                             <motion.div
                               className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r ${category.gradient} shadow-lg`}
@@ -155,7 +155,7 @@ const Skills = () => {
 
         {/* Stats Section */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-12 md:mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -169,12 +169,12 @@ const Skills = () => {
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="card p-6 text-center"
+              className="card p-4 sm:p-6 text-center"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.2 }}
             >
               <motion.div
-                className="text-3xl mb-2"
+                className="text-2xl sm:text-3xl mb-2"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -183,7 +183,7 @@ const Skills = () => {
                 {stat.icon}
               </motion.div>
               <motion.h4
-                className="text-3xl md:text-4xl font-bold gradient-text mb-2"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-2"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -191,7 +191,7 @@ const Skills = () => {
               >
                 {stat.value}
               </motion.h4>
-              <p className="text-dark-600 dark:text-dark-400 text-sm">
+              <p className="text-dark-600 dark:text-dark-400 text-xs sm:text-sm">
                 {stat.label}
               </p>
             </motion.div>
