@@ -34,20 +34,20 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 pb-8 px-4 sm:px-6 sm:pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-12 px-4 sm:px-6"
     >
       {/* Minimal Animated Background - Common for all themes */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {/* Subtle gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-dark-950 dark:via-dark-900 dark:to-dark-950" />
         
-        {/* Minimal Animated Shapes with theme colors */}
+        {/* Minimal Animated Shapes with theme colors - Constrained to viewport */}
         <motion.div
           className="hidden sm:block absolute top-20 left-10 w-72 h-72 bg-primary-400/10 dark:bg-primary-600/10 rounded-full blur-3xl"
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, 30, 0],
+            scale: [1, 1.1, 1],
+            x: [0, 30, 0],
+            y: [0, 20, 0],
           }}
           transition={{
             duration: 8,
@@ -56,11 +56,11 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="hidden sm:block absolute bottom-20 right-10 w-96 h-96 bg-accent-400/10 dark:bg-accent-600/10 rounded-full blur-3xl"
+          className="hidden sm:block absolute bottom-20 right-10 w-72 h-72 bg-accent-400/10 dark:bg-accent-600/10 rounded-full blur-3xl"
           animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -50, 0],
-            y: [0, -30, 0],
+            scale: [1, 1.1, 1],
+            x: [0, -30, 0],
+            y: [0, -20, 0],
           }}
           transition={{
             duration: 10,
@@ -69,9 +69,9 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="hidden sm:block absolute top-1/2 left-1/2 w-80 h-80 bg-primary-300/20 dark:bg-primary-700/20 rounded-full blur-3xl"
+          className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-300/20 dark:bg-primary-700/20 rounded-full blur-3xl"
           animate={{
-            scale: [1, 1.1, 1],
+            scale: [1, 1.05, 1],
             rotate: [0, 180, 360],
           }}
           transition={{
@@ -167,16 +167,16 @@ const Hero = () => {
 
           {/* Right Content - Profile Image */}
           <motion.div
-            className="relative order-first lg:order-last"
+            className="relative order-first lg:order-last overflow-hidden"
             variants={itemVariants}
           >
-            <div className="relative w-48 sm:max-w-sm md:max-w-md mx-auto">
-              {/* Decorative Elements */}
+            <div className="relative w-48 sm:w-64 md:w-80 mx-auto">
+              {/* Decorative Elements - Constrained */}
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-primary-600 via-accent-600 to-primary-700 rounded-full blur-2xl opacity-30"
+                className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-primary-600 via-accent-600 to-primary-700 rounded-full blur-2xl opacity-30"
                 animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 90, 0],
+                  scale: [1, 1.05, 1],
+                  rotate: [0, 45, 0],
                 }}
                 transition={{
                   duration: 8,
@@ -187,8 +187,8 @@ const Hero = () => {
               
               {/* Profile Image */}
               <motion.div
-                className="relative rounded-full overflow-hidden aspect-square border-2 sm:border-8 border-white dark:border-dark-800 shadow-2xl"
-                whileHover={{ scale: 1.05 }}
+                className="relative rounded-full overflow-hidden aspect-square border-2 sm:border-4 md:border-8 border-white dark:border-dark-800 shadow-2xl"
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
                 <img

@@ -119,7 +119,7 @@ const Navbar = () => {
 
         {/* Menu Content */}
         <motion.div
-          className="absolute top-20 right-4 left-4 max-h-[calc(100vh-7rem)] overflow-y-auto glass rounded-2xl p-6 shadow-2xl"
+          className="absolute top-20 right-4 left-4 max-w-md mx-auto max-h-[calc(100vh-7rem)] overflow-y-auto glass rounded-2xl p-6 shadow-2xl"
           initial={{ opacity: 0, y: -20, scale: 0.95 }}
           animate={{
             opacity: isOpen ? 1 : 0,

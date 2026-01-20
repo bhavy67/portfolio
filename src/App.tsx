@@ -20,9 +20,9 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-x-hidden">
         <Navbar />
-        <main>
+        <main className="overflow-x-hidden">
           <Hero />
           <Experience />
           <Education />
