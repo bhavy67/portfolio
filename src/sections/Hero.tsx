@@ -206,7 +206,7 @@ const Hero = () => {
                 transition={{ delay: 1, duration: 0.5 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
-                <p className="text-lg sm:text-3xl font-bold text-primary-600">3+</p>
+                <p className="text-lg sm:text-3xl font-bold text-primary-600">4+</p>
                 <p className="text-[10px] sm:text-sm text-dark-600 dark:text-dark-400">Years Exp</p>
               </motion.div>
             </div>
