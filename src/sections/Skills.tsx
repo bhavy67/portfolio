@@ -162,7 +162,7 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
         >
           {[
-            { label: 'Years Experience', value: '3+', icon: '💼' },
+            { label: 'Years Experience', value: '4+', icon: '💼' },
             { label: 'Projects Completed', value: '50+', icon: '🚀' },
             { label: 'Technologies', value: '30+', icon: '⚡' },
             { label: 'Happy Clients', value: '25+', icon: '😊' },
