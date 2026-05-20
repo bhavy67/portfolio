@@ -24,7 +24,7 @@ export const projects = [
     title: "Custom Code Editor",
     category: "Frontend",
     description: "Modern code editor with real-time collaboration, syntax highlighting, and version control integration.",
-    image: "https://images.unsplash.com/photo-1555069971-4a1e1b5dc750?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop",
     technologies: ["HTML", "CSS", "JavaScript"],
     features: [
       "Everything runs inside the browser in a sandbox.",
