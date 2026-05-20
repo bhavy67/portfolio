@@ -1,5 +1,3 @@
-import { desc } from "framer-motion/client";
-
 // Projects Data
 export const projects = [
   {
@@ -7,7 +5,7 @@ export const projects = [
     title: "KwikTools - Daily Tools for Everyone",
     category: "Full Stack",
     description: "KwikTools is a comprehensive suite of web-based tools designed to simplify daily tasks and boost productivity.",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop",
     technologies: ["React", "Zustand", "Tailwind CSS"],
     features: [
       "Unit Converter: Convert between various units of measurement",
@@ -26,7 +24,7 @@ export const projects = [
     title: "Custom Code Editor",
     category: "Frontend",
     description: "Modern code editor with real-time collaboration, syntax highlighting, and version control integration.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1555069971-4a1e1b5dc750?w=800&h=600&fit=crop",
     technologies: ["HTML", "CSS", "JavaScript"],
     features: [
       "Everything runs inside the browser in a sandbox.",
@@ -44,7 +42,7 @@ export const projects = [
     title: "Signature App",
     category: "Frontend",
     description: "Web application for creating and saving digital signatures.",
-    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop",
     technologies: ["HTML", "CSS", "JavaScript"],
     features: [
       "Create and save digital signatures",
@@ -61,7 +59,7 @@ export const projects = [
     title: "Finance Tracker",
     category: "Full Stack",
     description: "Analytics dashboard for financial metrics with data visualization, trend analysis, and automated reporting. Integrates with multiple financial platforms.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=600&fit=crop",
     technologies: ["React", "Zustand", "Tailwind CSS"],
     features: [
       "Real-time analytics",
@@ -79,7 +77,7 @@ export const projects = [
     title: "Klimate - Weather App",
     category: "Full Stack",
     description: "Klimate is a modern weather application that provides accurate and up-to-date weather information for any location worldwide. It features a sleek and intuitive interface, making it easy for users to check current weather conditions, forecasts, and more.",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=600&fit=crop",
     technologies: ["React", "Tanstack Query", "Tailwind CSS"],
     features: [
       "Current weather and 7-day forecast",
@@ -98,7 +96,7 @@ export const projects = [
     title: "Unfold Within - Mental Health App",
     category: "Frontend",
     description: "Unfold Within is a mental health application designed to support users in their journey towards emotional well-being. It offers a variety of features to help users track their moods, practice mindfulness, and access resources for mental health support.",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&h=600&fit=crop",
     technologies: ["React", "Redux", "Tailwind CSS"],
     features: [
       "Mood tracking and journaling",
