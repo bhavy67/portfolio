@@ -29,7 +29,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-dark-900 text-white py-12">
+    <footer className="bg-gray-100 dark:bg-dark-900 text-gray-900 dark:text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -43,10 +43,10 @@ const Footer = () => {
             <h3 className="text-2xl font-bold gradient-text mb-4">
               {personalInfo.name}
             </h3>
-            <p className="text-dark-400 mb-4">
+            <p className="dark:text-dark-400 text-gray-600 mb-4">
               {personalInfo.title}
             </p>
-            <p className="text-dark-400 text-sm">
+            <p className="dark:text-dark-400 text-gray-600 text-sm">
               {personalInfo.tagline}
             </p>
           </motion.div>
@@ -68,7 +68,7 @@ const Footer = () => {
                       e.preventDefault();
                       scrollToSection(link.href);
                     }}
-                    className="text-dark-400 hover:text-primary-400 transition-colors"
+                    className="dark:text-dark-400 text-gray-600 dark:hover:text-primary-400 hover:text-primary-600 transition-colors"
                   >
                     {link.name}
                   </a>
@@ -92,7 +92,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-dark-800 hover:bg-dark-700 text-dark-400 hover:text-white transition-all"
+                  className="p-3 rounded-lg bg-gray-200 dark:bg-dark-800 hover:bg-gray-300 dark:hover:bg-dark-700 dark:text-dark-400 text-gray-700 hover:text-gray-900 dark:hover:text-white transition-all"
                   whileHover={{ y: -2, scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label={social.label}
@@ -101,14 +101,14 @@ const Footer = () => {
                 </motion.a>
               ))}
             </div>
-            <p className="text-dark-400 text-sm">
+            <p className="dark:text-dark-400 text-gray-600 text-sm">
               Feel free to reach out for collaborations or just a friendly chat!
             </p>
           </motion.div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-dark-800 my-8" />
+        <div className="border-t border-gray-300 dark:border-dark-800 my-8" />
 
         {/* Bottom Footer */}
         <motion.div
@@ -118,12 +118,12 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p className="text-dark-400 text-sm text-center md:text-left">
+          <p className="dark:text-dark-400 text-gray-600 text-sm text-center md:text-left">
             © {currentYear} {personalInfo.name}. All rights reserved.
           </p>
           
           <motion.p
-            className="text-dark-400 text-sm flex items-center gap-2"
+            className="dark:text-dark-400 text-gray-600 text-sm flex items-center gap-2"
             whileHover={{ scale: 1.05 }}
           >
             Crafted with <motion.span
