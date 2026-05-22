@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import { projects } from '../data/projects';
 
 const Projects = () => {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   // Removed category filtering - showing all projects
   // const [selectedCategory, setSelectedCategory] = useState('All');
@@ -63,16 +61,17 @@ const Projects = () => {
           layout
         >
           {projects.map((project, index) => (
-            <motion.div
+            <motion.a
               key={project.id}
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               layout
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="card overflow-hidden group cursor-pointer"
-              onHoverStart={() => setHoveredProject(project.id)}
-              onHoverEnd={() => setHoveredProject(null)}
+              className="card overflow-hidden group cursor-pointer block"
               whileHover={{ y: -10 }}
             >
               {/* Featured Badge */}
@@ -89,46 +88,9 @@ const Projects = () => {
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
-                  animate={{
-                    scale: hoveredProject === project.id ? 1.1 : 1,
-                  }}
-                  transition={{ duration: 0.4 }}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                
-                {/* Overlay Links */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center gap-4"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: hoveredProject === project.id ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-white text-dark-900 shadow-lg"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <FiExternalLink size={20} />
-                  </motion.a>
-                  <motion.a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-white text-dark-900 shadow-lg"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <FiGithub size={20} />
-                  </motion.a>
-                </motion.div>
               </div>
 
               {/* Project Content */}
@@ -166,11 +128,17 @@ const Projects = () => {
                 </div>
 
                 {/* Date */}
-                <p className="text-xs text-dark-500 dark:text-dark-500">
+                <p className="text-xs text-dark-500 dark:text-dark-500 mb-3">
                   {project.date}
                 </p>
+
+                {/* View Project Link */}
+                <div className="flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 font-medium group-hover:gap-3 transition-all">
+                  <span>View Project</span>
+                  <FiExternalLink size={16} />
+                </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
 
