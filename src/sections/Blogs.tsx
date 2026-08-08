@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { FiCalendar, FiClock, FiExternalLink } from 'react-icons/fi';
-import { SiMedium, SiDevdotto } from 'react-icons/si';
+import { SiHashnode, SiDevdotto } from 'react-icons/si';
 import { blogPosts } from '../data/blogs';
 
 const Blogs = () => {
   const getPlatformIcon = (platform: string) => {
-    return platform === 'Medium' ? SiMedium : SiDevdotto;
+    return platform === 'Hashnode' ? SiHashnode : SiDevdotto;
   };
 
   return (
@@ -224,14 +224,14 @@ const Blogs = () => {
           transition={{ delay: 0.4 }}
         >
           <motion.a
-            href="https://medium.com/@yourusername"
+            href="https://bhavycodes.hashnode.dev/"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary inline-flex items-center gap-2 text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <SiMedium />
+            <SiHashnode />
             View All Blogs
           </motion.a>
         </motion.div>

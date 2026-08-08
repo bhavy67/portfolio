@@ -1,3 +1,10 @@
+import blogEncrypt from '../assets/blog_images/blog-encrypt.png';
+import blogCsrSsr from '../assets/blog_images/blog-csr-ssr.png';
+import blogDebouncing from '../assets/blog_images/blog-debouncing.png';
+import blogTypeScript from '../assets/blog_images/blog-typesscript.png';
+import blogHtml from '../assets/blog_images/blog-html.png';
+import blogJsDecode from '../assets/blog_images/blog-jsdecode.png';
+
 // Blog Posts Data
 export const blogPosts = [
   {
@@ -9,7 +16,7 @@ export const blogPosts = [
     tags: ["Security", "Cryptography", "JavaScript", "Fundamentals"],
     url: "https://bhavycodes.hashnode.dev/encrypting-vs-hashing-vs-encoding",
     platform: "Hashnode",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=400&fit=crop",
+    image: blogEncrypt,
     featured: true,
   },
   {
@@ -21,7 +28,7 @@ export const blogPosts = [
     tags: ["React", "SSR", "CSR", "Web Development"],
     url: "https://bhavycodes.hashnode.dev/csr-vs-ssr-in-react",
     platform: "Hashnode",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop",
+    image: blogCsrSsr,
     featured: true,
   },
   {
@@ -33,7 +40,7 @@ export const blogPosts = [
     tags: ["JavaScript", "Performance", "Optimization", "Tutorial"],
     url: "https://bhavycodes.hashnode.dev/mastering-debouncing-and-throttling-in-javascript-a-frontend-developers-complete-guide",
     platform: "Hashnode",
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=400&fit=crop",
+    image: blogDebouncing,
     featured: true,
   },
   {
@@ -45,7 +52,7 @@ export const blogPosts = [
     tags: ["TypeScript", "JavaScript", "Programming", "Tutorial"],
     url: "https://bhavycodes.hashnode.dev/magic-of-typescript-generics",
     platform: "Hashnode",
-    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&h=400&fit=crop",
+    image: blogTypeScript,
     featured: false,
   },
   {
@@ -57,7 +64,7 @@ export const blogPosts = [
     tags: ["HTML", "Web Development", "Frontend", "Tutorial"],
     url: "https://bhavycodes.hashnode.dev/exploring-uncommon-html-tags",
     platform: "Hashnode",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=400&fit=crop",
+    image: blogHtml,
     featured: false,
   },
   {
@@ -69,7 +76,7 @@ export const blogPosts = [
     tags: ["JavaScript", "Programming", "Fundamentals", "Tutorial"],
     url: "https://bhavycodes.hashnode.dev/decoding-weird-javascript-behaviour",
     platform: "Hashnode",
-    image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=400&fit=crop",
+    image: blogJsDecode,
     featured: false,
   },
 ];

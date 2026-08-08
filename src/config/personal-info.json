@@ -4,7 +4,7 @@
     "lastName": "Ladani",
     "fullName": "Bhavy Ladani",
     "initials": "BL",
-    "title": "Full Stack Software Developer",
+    "title": "Full Stack Software Engineer",
     "tagline": "Building scalable web solutions with modern technologies",
     "bio": "Passionate software developer with 3 years of experience in building responsive, user-friendly web applications. Specialized in React, Node.js, and cloud technologies. Love solving complex problems and creating elegant solutions.",
     "yearsOfExperience": "4+",
@@ -37,9 +37,9 @@
       "username": "",
       "url": ""
     },
-    "medium": {
-      "username": "bhavyladani",
-      "url": "https://medium.com/@bhavyladani"
+    "hashnode": {
+      "username": "bhavycodes",
+      "url": "https://bhavycodes.hashnode.dev/"
     },
     "devto": {
       "username": "bhavyladani",

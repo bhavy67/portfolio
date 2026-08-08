@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { FiMail, FiPhone, FiMapPin, FiGithub } from 'react-icons/fi';
 import { FiLinkedin } from 'react-icons/fi';
-import { SiLeetcode } from 'react-icons/si';
+import { SiHashnode } from 'react-icons/si';
 import { personalInfo } from '../data/personal';
 import { getRandomQuote } from '../data/quotes';
 import { useTheme } from '../context/ThemeContext';
@@ -25,7 +25,7 @@ const Contact = () => {
   const socialLinks = [
     { icon: FiLinkedin, label: 'LinkedIn', url: personalInfo.social.linkedin, username: `@${personalInfo.social.linkedin.split('/').pop()}` },
     { icon: FiGithub, label: 'GitHub', url: personalInfo.social.github, username: `@${personalInfo.social.github.split('/').pop()}` },
-    { icon: SiLeetcode, label: 'LeetCode', url: personalInfo.social.leetcode, username: `@${personalInfo.social.leetcode.split('/').pop()}` },
+    { icon: SiHashnode, label: 'Hashnode', url: personalInfo.social.hashnode, username: personalInfo.social.hashnodeUsername },
   ];
 
   return (

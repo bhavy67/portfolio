@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiHeart } from 'react-icons/fi';
-import { SiLeetcode } from 'react-icons/si';
+import { SiHashnode } from 'react-icons/si';
 import { personalInfo } from '../data/personal';
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: FiGithub, url: personalInfo.social.github, label: 'GitHub' },
     { icon: FiLinkedin, url: personalInfo.social.linkedin, label: 'LinkedIn' },
-    { icon: SiLeetcode, url: personalInfo.social.leetcode, label: 'LeetCode' },
+    { icon: SiHashnode, url: personalInfo.social.hashnode, label: 'Hashnode' },
     { icon: FiMail, url: `mailto:${personalInfo.email}`, label: 'Email' },
   ];
 
