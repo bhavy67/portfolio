@@ -4,6 +4,8 @@ import blogDebouncing from '../assets/blog_images/blog-debouncing.png';
 import blogTypeScript from '../assets/blog_images/blog-typesscript.png';
 import blogHtml from '../assets/blog_images/blog-html.png';
 import blogJsDecode from '../assets/blog_images/blog-jsdecode.png';
+import blogReactFiber from '../assets/blog_images/blog_ract_fiber.png';
+import blogAsyncAwait from '../assets/blog_images/blog_async_await.png';
 
 // Blog Posts Data
 export const blogPosts = [
@@ -41,6 +43,30 @@ export const blogPosts = [
     url: "https://bhavycodes.hashnode.dev/mastering-debouncing-and-throttling-in-javascript-a-frontend-developers-complete-guide",
     platform: "Hashnode",
     image: blogDebouncing,
+    featured: true,
+  },
+  {
+    id: 7,
+    title: "React Fiber Explained: The Engine That Makes Modern React Fast",
+    summary: "A deep dive into React Fiber — the reconciliation engine behind modern React. Understand how it enables concurrent rendering, prioritizes updates, and keeps UIs smooth and responsive.",
+    date: "2025-02-10",
+    readTime: "8 min read",
+    tags: ["React", "Performance", "JavaScript", "Frontend"],
+    url: "https://bhavycodes.hashnode.dev/react-fiber-explained-the-engine-that-makes-modern-react-fast",
+    platform: "Hashnode",
+    image: blogReactFiber,
+    featured: true,
+  },
+  {
+    id: 8,
+    title: "Async/Await Under the Hood: What Really Happens When JavaScript Waits",
+    summary: "Go beyond the syntax — explore how async/await works internally through the event loop, microtask queue, and Promises. Understand what JavaScript actually does when execution is paused.",
+    date: "2025-01-18",
+    readTime: "7 min read",
+    tags: ["JavaScript", "Async", "Event Loop", "Tutorial"],
+    url: "https://bhavycodes.hashnode.dev/async-await-under-the-hood-what-really-happens-when-javascript-waits",
+    platform: "Hashnode",
+    image: blogAsyncAwait,
     featured: true,
   },
   {
