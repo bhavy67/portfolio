@@ -84,11 +84,11 @@ const Projects = () => {
               )}
 
               {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-52 overflow-hidden bg-dark-900">
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-400"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
@@ -151,7 +151,7 @@ const Projects = () => {
           transition={{ delay: 0.4 }}
         >
           <motion.a
-            href="https://github.com/yourusername"
+            href="https://github.com/bhavy67"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary inline-flex items-center gap-2"

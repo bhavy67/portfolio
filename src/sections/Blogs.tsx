@@ -68,11 +68,11 @@ const Blogs = () => {
                   </div>
 
                   {/* Blog Image */}
-                  <div className="relative h-48 sm:h-56 overflow-hidden">
+                  <div className="relative h-48 sm:h-56 overflow-hidden bg-dark-900">
                     <motion.img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.4 }}
                     />
@@ -158,11 +158,11 @@ const Blogs = () => {
                   whileHover={{ y: -5 }}
                 >
                   {/* Blog Image */}
-                  <div className="relative h-36 sm:h-40 overflow-hidden">
+                  <div className="relative h-36 sm:h-40 overflow-hidden bg-dark-900">
                     <motion.img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.4 }}
                     />
