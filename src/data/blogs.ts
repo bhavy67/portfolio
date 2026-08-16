@@ -6,9 +6,22 @@ import blogHtml from '../assets/blog_images/blog-html.png';
 import blogJsDecode from '../assets/blog_images/blog-jsdecode.png';
 import blogReactFiber from '../assets/blog_images/blog_ract_fiber.png';
 import blogAsyncAwait from '../assets/blog_images/blog_async_await.png';
+import blogAuthenticator from '../assets/blog_images/blog_authenticator_app.png';
 
-// Blog Posts Data
+// Blog Posts Data — sorted by date desc in the component, latest 6 shown automatically
 export const blogPosts = [
+  {
+    id: 9,
+    title: "How Authenticator Apps Generate Codes Without Internet",
+    summary: "Ever wondered how Google Authenticator generates a new code every 30 seconds with no internet? Explore the TOTP algorithm, HMAC, and the cryptographic magic behind offline 2FA codes.",
+    date: "2026-08-17",
+    readTime: "6 min read",
+    tags: ["Security", "Cryptography", "Authentication", "2FA"],
+    url: "https://bhavycodes.hashnode.dev/how-authenticator-apps-generate-codes-without-internet",
+    platform: "Hashnode",
+    image: blogAuthenticator,
+    featured: true,
+  },
   {
     id: 1,
     title: "Encrypting vs Hashing vs Encoding",

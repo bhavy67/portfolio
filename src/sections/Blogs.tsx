@@ -8,6 +8,13 @@ const Blogs = () => {
     return platform === 'Hashnode' ? SiHashnode : SiDevdotto;
   };
 
+  const sortedPosts = [...blogPosts]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 8);
+
+  const featuredPosts = sortedPosts.slice(0, 2);
+  const regularPosts = sortedPosts.slice(2);
+
   return (
     <section id="blogs" className="section-container bg-dark-50 dark:bg-dark-900">
       <motion.div
@@ -39,13 +46,11 @@ const Blogs = () => {
 
         {/* Featured Blogs */}
         <div className={`grid gap-6 sm:gap-8 mb-8 sm:mb-12 ${
-          blogPosts.filter((post) => post.featured).length === 1 
-            ? 'lg:grid-cols-1 max-w-3xl mx-auto' 
+          featuredPosts.length === 1
+            ? 'lg:grid-cols-1 max-w-3xl mx-auto'
             : 'lg:grid-cols-2'
         }`}>
-          {blogPosts
-            .filter((post) => post.featured)
-            .map((post, index) => {
+          {featuredPosts.map((post, index) => {
               const PlatformIcon = getPlatformIcon(post.platform);
               return (
                 <motion.a
@@ -134,15 +139,13 @@ const Blogs = () => {
 
         {/* Other Blogs */}
         <div className={`grid gap-4 sm:gap-6 ${
-          blogPosts.filter((post) => !post.featured).length === 1 
-            ? 'md:grid-cols-1 max-w-2xl mx-auto' 
-            : blogPosts.filter((post) => !post.featured).length === 2 
-            ? 'md:grid-cols-2 max-w-4xl mx-auto' 
+          regularPosts.length === 1
+            ? 'md:grid-cols-1 max-w-2xl mx-auto'
+            : regularPosts.length === 2
+            ? 'md:grid-cols-2 max-w-4xl mx-auto'
             : 'md:grid-cols-2 lg:grid-cols-3'
         }`}>
-          {blogPosts
-            .filter((post) => !post.featured)
-            .map((post, index) => {
+          {regularPosts.map((post, index) => {
               const PlatformIcon = getPlatformIcon(post.platform);
               return (
                 <motion.a
