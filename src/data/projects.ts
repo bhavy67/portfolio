@@ -48,8 +48,8 @@ export const projects = [
   },
   {
     id: 3,
-    title: "KwikTools - 61 Tools for Developers",
-    category: "Full Stack",
+    title: "KwikTools - 60+ Tools for Developers",
+    category: "Frontend",
     description: "61+ free, privacy-first tools for developers and everyday users — all running 100% in the browser. Covers formatters, finance calculators (GST, SIP, EMI), image utilities, text tools, generators, CSS tools, and more. No server, no tracking, works offline as a PWA.",
     image: kwikToolsImg,
     technologies: ["React 18", "TypeScript", "Vite 7", "Zustand", "Tailwind CSS", "PWA"],
