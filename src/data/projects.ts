@@ -1,3 +1,4 @@
+import ahmedabadMetroImg from '../assets/ahmedabad-metro-tracker.png';
 import claudeDashboardImg from '../assets/claude-dashboard.png';
 import lifeInWeeksImg from '../assets/life-in-weeks.png';
 import kwikToolsImg from '../assets/kwiktools.png';
@@ -6,6 +7,26 @@ import financeTrackerImg from '../assets/financetrackker.png';
 
 // Projects Data
 export const projects = [
+  {
+    id: 6,
+    title: "Ahmedabad Metro Tracker",
+    category: "Full Stack",
+    description: "A live, offline-capable PWA for the Ahmedabad Metro network — shows real-time train positions on an interactive map, departure boards with countdown timers, and a journey planner with fare and transfer details, all computed from the official GMRC timetable.",
+    image: ahmedabadMetroImg,
+    technologies: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "MapLibre GL", "PWA"],
+    features: [
+      "Live train positions across all 4 lines on an interactive MapLibre map",
+      "Per-line timetables for Blue, Red, Yellow, and Violet lines",
+      "Journey planner with fastest route, fare, duration, and transfer details",
+      "Station departure boards with live countdown timers and last-train warnings",
+      "Nearest station detection via GPS with one-tap live departures",
+      "PWA — installable on Android & iOS, fully offline using cached schedule",
+    ],
+    liveUrl: "https://ahmedabad-metro-tracker.vercel.app/",
+    githubUrl: "https://github.com/darshan260802/metro-tracker",
+    date: "2026",
+    featured: true,
+  },
   {
     id: 1,
     title: "Claude Dashboard",
