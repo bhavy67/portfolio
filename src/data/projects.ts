@@ -1,9 +1,9 @@
 import ahmedabadMetroImg from '../assets/ahmedabad-metro-tracker.png';
 import claudeDashboardImg from '../assets/claude-dashboard.png';
+import lockKaroImg from '../assets/lockkaro.png';
 import lifeInWeeksImg from '../assets/life-in-weeks.png';
 import kwikToolsImg from '../assets/kwiktools.png';
 import klimateImg from '../assets/klimate.png';
-import financeTrackerImg from '../assets/financetrackker.png';
 
 // Projects Data
 export const projects = [
@@ -44,6 +44,26 @@ export const projects = [
     ],
     liveUrl: "https://github.com/bhavy67/claude-dashboard",
     githubUrl: "https://github.com/bhavy67/claude-dashboard",
+    date: "2026",
+    featured: true,
+  },
+  {
+    id: 7,
+    title: "LockKaro",
+    category: "Full Stack",
+    description: "A calm, private vault for life's paperwork — IDs, insurance, degrees, receipts — with expiry tracking, reminders, and a full activity timeline. Built as a real consumer product with a pluggable data layer that runs fully offline-local or against a live Supabase backend.",
+    image: lockKaroImg,
+    technologies: ["Next.js 15", "TypeScript", "Supabase", "Tailwind CSS", "Zustand", "TanStack Query"],
+    features: [
+      "Drag-and-drop document vault with grid/list views, PDF & image preview, and categorization",
+      "Dashboard with storage usage, category breakdown, and recent activity",
+      "Tags, collections, saved filters, and debounced search",
+      "Visual timeline and expiry reminders (Soon/Later/Expired) with live badge counts",
+      "Global command palette (⌘K) and full keyboard shortcuts",
+      "Client-side text extraction (PDF.js + Tesseract OCR) — nothing leaves the browser",
+    ],
+    liveUrl: "https://lockkaro.vercel.app",
+    githubUrl: "https://github.com/bhavy67/Lockrr",
     date: "2026",
     featured: true,
   },
@@ -104,26 +124,6 @@ export const projects = [
     ],
     liveUrl: "https://klimate-bhavy.vercel.app/",
     githubUrl: "https://github.com/bhavy67/klimate",
-    date: "2024",
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "Finance Tracker",
-    category: "Frontend",
-    description: "A personal finance management app to log, categorize, and track income and expenses in real-time — with smart filtering, dark mode, PWA support, and full local data privacy.",
-    image: financeTrackerImg,
-    technologies: ["HTML", "CSS", "JavaScript", "PWA"],
-    features: [
-      "Track income and expenses with 12 predefined categories",
-      "Real-time balance, income, and expense totals",
-      "Filter transactions by category and type",
-      "Dark and light mode toggle",
-      "Progressive Web App — installable on any device",
-      "All data stored locally — complete privacy",
-    ],
-    liveUrl: "https://bhavy67.github.io/finance-tracker/",
-    githubUrl: "https://github.com/bhavy67/finance-tracker",
     date: "2024",
     featured: false,
   },
