@@ -3,7 +3,7 @@ import claudeDashboardImg from '../assets/claude-dashboard.png';
 import lockKaroImg from '../assets/lockkaro.png';
 import lifeInWeeksImg from '../assets/life-in-weeks.png';
 import kwikToolsImg from '../assets/kwiktools.png';
-import klimateImg from '../assets/klimate.png';
+import splitittImg from '../assets/splititt.png';
 
 // Projects Data
 export const projects = [
@@ -68,24 +68,23 @@ export const projects = [
     featured: true,
   },
   {
-    id: 2,
-    title: "Life In Weeks",
+    id: 4,
+    title: "Splititt - Expense Splitter",
     category: "Frontend",
-    description: "A minimal life-visualization tool that renders your entire existence as a grid of weeks. Pin memories, define life eras with colors, and download your grid as a phone wallpaper.",
-    image: lifeInWeeksImg,
-    technologies: ["React 19", "TypeScript", "Tailwind CSS", "PWA"],
+    description: "A smart expense splitter that makes settling group bills effortless — add expenses, split by equal shares or custom amounts, and see a clean summary of who owes whom with one-tap settlement.",
+    image: splitittImg,
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     features: [
-      "Visualize your life as a grid of weeks, months, or years",
-      "Pin memories with titles, descriptions, and emojis to past weeks",
-      "Define color-coded life eras and chapters",
-      "Statistics dashboard with age, life percentage, and weeks remaining",
-      "Download as 1080×1920 phone wallpaper",
-      "Progressive Web App — installable and fully offline-capable",
+      "Add and manage group expenses with custom descriptions and amounts",
+      "Split bills equally or by custom amounts per person",
+      "Live balance summary showing net amounts owed between members",
+      "Optimized settlement suggestions to minimize the number of transactions",
+      "Clean, mobile-friendly UI for on-the-go splitting",
     ],
-    liveUrl: "https://gridoflife.vercel.app",
-    githubUrl: "https://github.com/bhavy67/Life-In-Weeks",
-    date: "2026",
-    featured: true,
+    liveUrl: "https://splititt.vercel.app/",
+    githubUrl: "https://github.com/bhavy67/expense-splitter",
+    date: "2025",
+    featured: false,
   },
   {
     id: 3,
@@ -108,24 +107,24 @@ export const projects = [
     featured: true,
   },
   {
-    id: 4,
-    title: "Klimate - Weather App",
-    category: "Full Stack",
-    description: "A modern weather application built with Next.js providing real-time weather data, interactive forecast charts, and location-based detection with a clean dark/light UI.",
-    image: klimateImg,
-    technologies: ["Next.js", "TypeScript", "TanStack Query", "Shadcn UI", "Recharts", "Tailwind CSS"],
+    id: 2,
+    title: "Life In Weeks",
+    category: "Frontend",
+    description: "A minimal life-visualization tool that renders your entire existence as a grid of weeks. Pin memories, define life eras with colors, and download your grid as a phone wallpaper.",
+    image: lifeInWeeksImg,
+    technologies: ["React 19", "TypeScript", "Tailwind CSS", "PWA"],
     features: [
-      "Search weather for any location worldwide",
-      "Interactive forecast charts powered by Recharts",
-      "Lightning-fast data fetching with TanStack Query",
-      "Location-based weather detection",
-      "Dark and light mode support",
-      "Responsive design across all devices",
+      "Visualize your life as a grid of weeks, months, or years",
+      "Pin memories with titles, descriptions, and emojis to past weeks",
+      "Define color-coded life eras and chapters",
+      "Statistics dashboard with age, life percentage, and weeks remaining",
+      "Download as 1080×1920 phone wallpaper",
+      "Progressive Web App — installable and fully offline-capable",
     ],
-    liveUrl: "https://klimate-bhavy.vercel.app/",
-    githubUrl: "https://github.com/bhavy67/klimate",
-    date: "2024",
-    featured: false,
+    liveUrl: "https://gridoflife.vercel.app",
+    githubUrl: "https://github.com/bhavy67/Life-In-Weeks",
+    date: "2026",
+    featured: true,
   },
 ];
 
