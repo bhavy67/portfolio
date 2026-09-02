@@ -1,8 +1,152 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { useScrollPosition } from '../hooks/useCustomHooks';
 import ThemeSwitcher from './ThemeSwitcher';
+
+const SCRAMBLE_CHARS = 'abcdefghijklmnopqrstuvwxyz';
+
+const Logo = ({ onNavigate }: { onNavigate: () => void }) => {
+  const [typed, setTyped] = useState('');
+  const [showCursor, setShowCursor] = useState(false);
+  const [hideCursor, setHideCursor] = useState(false);
+  const [showDot, setShowDot] = useState(false);
+  const [display, setDisplay] = useState('');
+  const scrambleInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isTypingDone = useRef(false);
+  const full = 'bhavy';
+  // Humanized — b is slow (thinking), h-a-v quick burst, y slightly hesitant
+  const charDelays = [220, 340, 415, 478, 560];
+
+  // Boot sequence: type → cursor blinks → cursor fades → status dot appears
+  useEffect(() => {
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+
+    charDelays.forEach((delay, i) => {
+      const t = setTimeout(() => {
+        setTyped(full.slice(0, i + 1));
+        setDisplay(full.slice(0, i + 1));
+        if (i === full.length - 1) {
+          isTypingDone.current = true;
+          setShowCursor(true);
+          const t2 = setTimeout(() => {
+            setHideCursor(true);
+            const t3 = setTimeout(() => setShowDot(true), 200);
+            timeouts.push(t3);
+          }, 2000);
+          timeouts.push(t2);
+        }
+      }, delay);
+      timeouts.push(t);
+    });
+
+    return () => timeouts.forEach(clearTimeout);
+  }, []);
+
+  // Scramble: letters cycle through random chars, resolve left-to-right
+  const startScramble = () => {
+    if (!isTypingDone.current) return;
+
+    let iteration = 0;
+    scrambleInterval.current = setInterval(() => {
+      const result = full
+        .split('')
+        .map((char, i) => {
+          if (i < Math.floor(iteration)) return char;
+          return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        })
+        .join('');
+
+      setDisplay(result);
+      iteration += 0.38;
+
+      if (iteration > full.length) {
+        clearInterval(scrambleInterval.current!);
+        setDisplay(full);
+      }
+    }, 32);
+  };
+
+  const stopScramble = () => {
+    if (scrambleInterval.current) clearInterval(scrambleInterval.current);
+    setDisplay(full);
+  };
+
+  return (
+    <div className="flex items-center gap-2.5">
+      <motion.a
+        href="#home"
+        onClick={(e) => { e.preventDefault(); onNavigate(); }}
+        whileTap={{ scale: 0.95 }}
+        onHoverStart={startScramble}
+        onHoverEnd={stopScramble}
+        className="flex items-baseline select-none cursor-pointer"
+      >
+        {/* The slash — slides in first, anchors the mark */}
+        <motion.span
+          className="font-mono text-xl font-bold gradient-text leading-none pr-[1px]"
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+        >
+          /
+        </motion.span>
+
+        {/* Name — shows scrambled chars on hover, typed text otherwise */}
+        <span className="font-mono text-xl font-semibold text-dark-900 dark:text-white tracking-tight leading-none">
+          {display}
+        </span>
+
+        {/* Cursor while typing in progress */}
+        {!showCursor && typed.length > 0 && (
+          <motion.span
+            className="inline-block w-[2px] h-[18px] bg-primary-400 ml-[2px] translate-y-[1px]"
+            animate={{ opacity: [1, 0.15] }}
+            transition={{ duration: 0.4, repeat: Infinity, repeatType: 'reverse' }}
+          />
+        )}
+
+        {/* Cursor after typing — blinks then disappears */}
+        {showCursor && !hideCursor && (
+          <motion.span
+            className="inline-block w-[2px] h-[18px] bg-primary-500 ml-[2px] translate-y-[1px]"
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.55, repeat: Infinity, repeatType: 'reverse', ease: 'linear' }}
+          />
+        )}
+      </motion.a>
+
+      {/* Status dot — appears after boot sequence, stays ambient */}
+      <AnimatePresence>
+        {showDot && (
+          <motion.div
+            className="group relative flex items-center cursor-default"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: 'spring', bounce: 0.5, duration: 0.4 }}
+          >
+            {/* Outer pulse ring */}
+            <motion.span
+              className="absolute w-3 h-3 rounded-full bg-emerald-400/30"
+              animate={{ scale: [1, 2.2, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
+            />
+            {/* Inner solid dot */}
+            <span className="relative w-1.5 h-1.5 rounded-full bg-emerald-400 block" />
+
+            {/* Tooltip */}
+            <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <div className="px-2.5 py-1.5 bg-dark-950 dark:bg-dark-700 text-white text-[11px] font-medium rounded-lg whitespace-nowrap shadow-xl">
+                Open to good problems
+                <div className="absolute -top-[4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-dark-950 dark:bg-dark-700 rotate-45" />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,18 +194,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <motion.a
-              href="#home"
-              className="text-2xl font-bold gradient-text"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('#home');
-              }}
-            >
-              BL
-            </motion.a>
+            <Logo onNavigate={() => scrollToSection('#home')} />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
