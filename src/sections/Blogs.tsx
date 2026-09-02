@@ -153,7 +153,7 @@ const Blogs = () => {
                   href={post.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card overflow-hidden group"
+                  className={`card overflow-hidden group${index >= 2 ? ' hidden sm:flex sm:flex-col' : ''}`}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
