@@ -3,18 +3,17 @@ import type { IconType } from 'react-icons';
 import * as SimpleIcons from 'react-icons/si';
 import { skills } from '../data/personal';
 
+const categories = [
+  { title: 'Frontend', data: skills.frontend },
+  { title: 'Backend', data: skills.backend },
+  { title: 'Database', data: skills.database },
+  { title: 'Tools & DevOps', data: skills.tools },
+];
+
+const getIcon = (iconName: string): IconType =>
+  (SimpleIcons as any)[iconName] || SimpleIcons.SiJavascript;
+
 const Skills = () => {
-  const categories = [
-    { title: 'Frontend', data: skills.frontend, gradient: 'from-primary-500 via-accent-500 to-primary-600' },
-    { title: 'Backend', data: skills.backend, gradient: 'from-accent-500 via-primary-600 to-accent-600' },
-    { title: 'Database', data: skills.database, gradient: 'from-primary-600 via-accent-600 to-primary-700' },
-    { title: 'Tools & DevOps', data: skills.tools, gradient: 'from-accent-600 via-primary-700 to-accent-700' },
-  ];
-
-  const getIcon = (iconName: string): IconType => {
-    return (SimpleIcons as any)[iconName] || SimpleIcons.SiJavascript;
-  };
-
   return (
     <section id="skills" className="section-container bg-dark-50 dark:bg-dark-900">
       <motion.div
@@ -40,111 +39,47 @@ const Skills = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            Technologies and tools I work with to build amazing products
+            Technologies and Tools I work with to build amazing products
           </motion.p>
         </div>
 
-        {/* Skills Grid - Test Tube Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Skills Grid */}
+        <div className="space-y-10 md:space-y-12">
           {categories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              className="card p-4 sm:p-6"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: catIndex * 0.1 }}
+              transition={{ duration: 0.5, delay: catIndex * 0.08 }}
             >
-              {/* Category Header */}
-              <div className="mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl font-bold text-dark-900 dark:text-white mb-2">
+              <div className="flex items-center gap-4 mb-5">
+                <span className="text-xs font-semibold uppercase tracking-widest text-dark-500 dark:text-dark-400">
                   {category.title}
-                </h3>
-                <div className={`h-1 w-12 sm:w-16 rounded-full bg-gradient-to-r ${category.gradient}`} />
+                </span>
+                <div className="flex-1 h-px bg-dark-200 dark:bg-dark-700" />
               </div>
 
-              {/* Test Tube Skills */}
-              <div className="space-y-3 sm:space-y-4">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {category.data.map((skill, index) => {
                   const Icon = getIcon(skill.icon);
                   return (
                     <motion.div
                       key={skill.name}
-                      className="relative group"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      className="group flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-dark-200 dark:border-dark-700 bg-white dark:bg-dark-800 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-950/40 transition-all duration-200 cursor-default"
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      transition={{ duration: 0.25, delay: index * 0.035 }}
+                      whileHover={{ y: -2 }}
                     >
-                      {/* Test Tube Container */}
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        {/* Icon Circle */}
-                        <motion.div
-                          className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br ${category.gradient} flex items-center justify-center text-white shadow-lg`}
-                          whileHover={{ scale: 1.1, rotate: 360 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <Icon size={16} className="sm:w-5 sm:h-5" />
-                        </motion.div>
-
-                        {/* Test Tube */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs sm:text-sm font-medium text-dark-900 dark:text-white truncate">
-                              {skill.name}
-                            </span>
-                          </div>
-                          
-                          {/* Tube Container */}
-                          <div className="relative h-5 sm:h-6 bg-dark-200 dark:bg-dark-700 rounded-full overflow-hidden shadow-inner">
-                            {/* Liquid Fill */}
-                            <motion.div
-                              className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r ${category.gradient} shadow-lg`}
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${skill.level}%` }}
-                              viewport={{ once: true }}
-                              transition={{ 
-                                duration: 1.5, 
-                                delay: index * 0.1,
-                                ease: "easeOut"
-                              }}
-                              style={{
-                                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1)'
-                              }}
-                            >
-                              {/* Shine Effect */}
-                              <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent rounded-full" />
-                              
-                              {/* Bubbles */}
-                              <motion.div
-                                className="absolute right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white/50 rounded-full"
-                                animate={{
-                                  y: [-5, -10, -5],
-                                  opacity: [0.5, 1, 0.5]
-                                }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            </motion.div>
-
-                            {/* Glass Effect Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/10 rounded-full pointer-events-none" />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Tooltip on Hover */}
-                      <motion.div
-                        className="absolute -top-8 left-1/2 -translate-x-1/2 px-3 py-1 bg-dark-900 dark:bg-white text-white dark:text-dark-900 text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg"
-                        initial={{ opacity: 0, y: 5 }}
-                        whileHover={{ opacity: 1, y: 0 }}
-                      >
-                        {skill.level}% Proficiency
-                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-dark-900 dark:bg-white rotate-45" />
-                      </motion.div>
+                      <Icon
+                        size={14}
+                        className="text-dark-400 dark:text-dark-500 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors shrink-0"
+                      />
+                      <span className="text-xs sm:text-sm font-medium text-dark-700 dark:text-dark-300 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors whitespace-nowrap">
+                        {skill.name}
+                      </span>
                     </motion.div>
                   );
                 })}
@@ -152,51 +87,6 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Stats Section */}
-        <motion.div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-12 md:mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          {[
-            { label: 'Years Experience', value: '4+', icon: '💼' },
-            { label: 'Projects Completed', value: '50+', icon: '🚀' },
-            { label: 'Technologies', value: '30+', icon: '⚡' },
-            { label: 'Happy Clients', value: '25+', icon: '😊' },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="card p-4 sm:p-6 text-center"
-              whileHover={{ scale: 1.05, y: -5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <motion.div
-                className="text-2xl sm:text-3xl mb-2"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {stat.icon}
-              </motion.div>
-              <motion.h4
-                className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-2"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {stat.value}
-              </motion.h4>
-              <p className="text-dark-600 dark:text-dark-400 text-xs sm:text-sm">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
       </motion.div>
     </section>
   );
