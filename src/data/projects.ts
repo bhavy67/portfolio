@@ -2,7 +2,7 @@ import ahmedabadMetroImg from '../assets/ahmedabad-metro-tracker.png';
 import claudeDashboardImg from '../assets/claude-dashboard.png';
 import lockKaroImg from '../assets/lockkaro.png';
 import lifeInWeeksImg from '../assets/life-in-weeks.png';
-import kwikToolsImg from '../assets/kwiktools.png';
+import fixittImg from '../assets/fixitt.png';
 import splitittImg from '../assets/splititt.png';
 
 // Projects Data
@@ -48,6 +48,26 @@ export const projects = [
     featured: true,
   },
   {
+    id: 3,
+    title: "Fixitt - 40+ File Tools",
+    category: "Frontend",
+    description: "40+ privacy-first file processing tools that run entirely in the browser — PDF manipulation, image conversion, OCR, and data utilities. Your files never leave the tab.",
+    image: fixittImg,
+    technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "PWA"],
+    features: [
+      "PDF tools: merge, split, extract, rotate, compress, encrypt, redact, and watermark",
+      "Format conversion: PDF to image, Markdown/HTML/EPUB to PDF, and more",
+      "Image processing: resize, convert formats, and Base64 encoding",
+      "Data tools: JSON formatter and CSV converter",
+      "OCR — extract text from scanned documents, all client-side",
+      "Command palette for instant tool discovery; fully offline-capable as a PWA",
+    ],
+    liveUrl: "https://fixitt.vercel.app/",
+    githubUrl: "",
+    date: "2025",
+    featured: true,
+  },
+  {
     id: 7,
     title: "LockKaro",
     category: "Full Stack",
@@ -70,41 +90,22 @@ export const projects = [
   {
     id: 4,
     title: "Splititt - Expense Splitter",
-    category: "Frontend",
-    description: "A smart expense splitter that makes settling group bills effortless — add expenses, split by equal shares or custom amounts, and see a clean summary of who owes whom with one-tap settlement.",
+    category: "Full Stack",
+    description: "A smart expense splitter that makes settling group bills effortless — add expenses, split by equal shares or custom amounts, and see a clean summary of who owes whom with one-tap settlement. Backed by Supabase for real-time sync and persistent group data.",
     image: splitittImg,
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    technologies: ["React", "TypeScript", "Supabase", "Tailwind CSS", "Vite"],
     features: [
       "Add and manage group expenses with custom descriptions and amounts",
       "Split bills equally or by custom amounts per person",
       "Live balance summary showing net amounts owed between members",
       "Optimized settlement suggestions to minimize the number of transactions",
+      "Supabase backend for real-time sync and persistent group data",
       "Clean, mobile-friendly UI for on-the-go splitting",
     ],
     liveUrl: "https://splititt.vercel.app/",
     githubUrl: "https://github.com/bhavy67/expense-splitter",
     date: "2025",
     featured: false,
-  },
-  {
-    id: 3,
-    title: "KwikTools - 60+ Tools for Developers",
-    category: "Frontend",
-    description: "61+ free, privacy-first tools for developers and everyday users — all running 100% in the browser. Covers formatters, finance calculators (GST, SIP, EMI), image utilities, text tools, generators, CSS tools, and more. No server, no tracking, works offline as a PWA.",
-    image: kwikToolsImg,
-    technologies: ["React 18", "TypeScript", "Vite 7", "Zustand", "Tailwind CSS", "PWA"],
-    features: [
-      "61 tools across 11 categories: formatters, converters, generators, image tools, security & more",
-      "India-specific finance tools: GST, SIP, FD, EMI, fuel cost calculator",
-      "Developer tools: JWT decoder, JSON diff, SQL/XML formatter, regex tester, hash generator",
-      "Image tools via Canvas API — resize, compress, favicon generator, Base64 converter",
-      "CSS generators, minifiers, QR codes, UUID generator, color palette generator",
-      "PWA — installable on Android, iOS & desktop with full offline support",
-    ],
-    liveUrl: "https://kwiktools.vercel.app/",
-    githubUrl: "https://github.com/bhavy67/daily-tools",
-    date: "2025",
-    featured: true,
   },
   {
     id: 2,
