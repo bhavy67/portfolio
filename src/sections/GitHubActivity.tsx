@@ -80,8 +80,6 @@ const GitHubActivity = () => {
                 blockSize={13}
                 blockMargin={4}
                 fontSize={12}
-                hideColorLegend={false}
-                hideTotalCount={false}
               />
             </div>
           </div>
