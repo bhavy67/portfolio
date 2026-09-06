@@ -1,15 +1,17 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { HiCheckCircle } from 'react-icons/hi';
+import { HiCheck } from 'react-icons/hi';
 import { useTheme } from '../context/ThemeContext';
 
 const ThemeSwitcher = () => {
   const { currentTheme, setTheme, themes } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
+  const lightThemes = themes.filter(t => !t.isDark);
+  const darkThemes = themes.filter(t => t.isDark);
+
   return (
     <div className="relative">
-      {/* Theme Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="p-2.5 rounded-lg bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:bg-dark-200 dark:hover:bg-dark-700 transition-colors shadow-lg"
@@ -20,83 +22,71 @@ const ThemeSwitcher = () => {
         <span className="text-2xl block leading-none">{currentTheme.icon}</span>
       </motion.button>
 
-      {/* Theme Dropdown */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
-            <div
-              className="fixed inset-0 z-40"
-              onClick={() => setIsOpen(false)}
-            />
+            <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
 
-            {/* Compact Dropdown Menu */}
             <motion.div
-              className="absolute right-0 top-14 w-80 glass rounded-2xl shadow-2xl z-50 overflow-hidden"
+              className="absolute right-0 top-14 w-72 glass rounded-2xl shadow-2xl z-50 overflow-hidden"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="p-4">
-                {/* Header */}
-                <h3 className="text-base font-bold text-dark-900 dark:text-white mb-3 text-center">
+              <div className="p-4 space-y-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-dark-400 dark:text-dark-500 text-center">
                   Choose Theme
-                </h3>
+                </p>
 
-                {/* Theme Grid - 3 per row */}
-                <div className="grid grid-cols-3 gap-3">
-                  {themes.map((theme) => (
-                    <motion.button
-                      key={theme.id}
-                      onClick={() => {
-                        setTheme(theme.id);
-                        setIsOpen(false);
-                      }}
-                      className={`relative p-3 rounded-xl transition-all ${
-                        currentTheme.id === theme.id
-                          ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
-                          : 'bg-dark-50 dark:bg-dark-800 hover:bg-dark-100 dark:hover:bg-dark-700'
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      title={theme.name}
-                    >
-                      {/* Theme Icon */}
-                      <div className="flex flex-col items-center gap-2">
-                        <div
-                          className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl shadow-md"
-                          style={{ backgroundColor: theme.primary }}
-                        >
-                          {theme.icon}
-                        </div>
-                        
-                        {/* Color Dots */}
-                        <div className="flex gap-1">
-                          <div
-                            className="w-2 h-2 rounded-full"
-                            style={{ backgroundColor: theme.primary }}
-                          />
-                          <div
-                            className="w-2 h-2 rounded-full"
-                            style={{ backgroundColor: theme.accent }}
-                          />
-                        </div>
-                      </div>
+                {[{ label: 'Light', items: lightThemes }, { label: 'Dark', items: darkThemes }].map(({ label, items }) => (
+                  <div key={label}>
+                    <p className="text-xs font-medium text-dark-400 dark:text-dark-500 mb-2 px-0.5">{label}</p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {items.map((theme) => {
+                        const isActive = currentTheme.id === theme.id;
+                        return (
+                          <motion.button
+                            key={theme.id}
+                            onClick={() => { setTheme(theme.id); setIsOpen(false); }}
+                            className={`relative rounded-xl overflow-hidden transition-all outline-none ${
+                              isActive
+                                ? 'ring-2 ring-offset-2 ring-offset-white dark:ring-offset-dark-900'
+                                : 'hover:scale-105'
+                            }`}
+                            style={isActive ? { '--tw-ring-color': theme.primary } as React.CSSProperties : {}}
+                            whileTap={{ scale: 0.95 }}
+                            title={theme.name}
+                          >
+                            {/* Color swatch */}
+                            <div
+                              className="h-9 w-full"
+                              style={{ background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.accent} 100%)` }}
+                            >
+                              {isActive && (
+                                <motion.div
+                                  initial={{ scale: 0 }}
+                                  animate={{ scale: 1 }}
+                                  className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-white/90 flex items-center justify-center"
+                                >
+                                  <HiCheck className="w-2.5 h-2.5" style={{ color: theme.primary }} />
+                                </motion.div>
+                              )}
+                            </div>
 
-                      {/* Selected Indicator */}
-                      {currentTheme.id === theme.id && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="absolute -top-1 -right-1 bg-primary-500 rounded-full p-1"
-                        >
-                          <HiCheckCircle className="w-4 h-4 text-white" />
-                        </motion.div>
-                      )}
-                    </motion.button>
-                  ))}
-                </div>
+                            {/* Name + icon */}
+                            <div className="bg-dark-50 dark:bg-dark-800 px-1 pt-1.5 pb-2 flex flex-col items-center gap-0.5">
+                              <span className="text-base leading-none">{theme.icon}</span>
+                              <span className="text-[10px] font-medium text-dark-600 dark:text-dark-300 truncate w-full text-center leading-tight">
+                                {theme.name}
+                              </span>
+                            </div>
+                          </motion.button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </>
