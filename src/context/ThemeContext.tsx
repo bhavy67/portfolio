@@ -194,10 +194,20 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       .text-pink-500 { color: ${accentShades[500]} !important; }
       .text-pink-600 { color: ${accentShades[600]} !important; }
       
-      /* Hover states */
+      /* Hover text */
       .hover\\:text-primary-400:hover { color: ${primaryShades[400]} !important; }
       .hover\\:text-primary-600:hover { color: ${primaryShades[600]} !important; }
       .dark .dark\\:text-primary-400 { color: ${primaryShades[400]} !important; }
+      .dark .dark\\:hover\\:text-primary-400:hover { color: ${primaryShades[400]} !important; }
+      .dark .dark\\:hover\\:text-primary-600:hover { color: ${primaryShades[600]} !important; }
+
+      /* Group hover text */
+      .group:hover .group-hover\\:text-primary-300 { color: ${primaryShades[300]} !important; }
+      .group:hover .group-hover\\:text-primary-400 { color: ${primaryShades[400]} !important; }
+      .group:hover .group-hover\\:text-primary-600 { color: ${primaryShades[600]} !important; }
+      .group:hover .group-hover\\:text-primary-700 { color: ${primaryShades[700]} !important; }
+      .dark .group:hover .dark\\:group-hover\\:text-primary-300 { color: ${primaryShades[300]} !important; }
+      .dark .group:hover .dark\\:group-hover\\:text-primary-400 { color: ${primaryShades[400]} !important; }
       
       /* ========== BACKGROUND COLORS ========== */
       .bg-primary-50 { background-color: ${primaryShades[50]} !important; }
@@ -228,12 +238,18 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       .dark .dark\\:bg-primary-600\\/20 { background-color: ${primaryShades[600]}33 !important; }
       .dark .dark\\:bg-primary-900\\/30 { background-color: ${primaryShades[900]}4D !important; }
       
-      /* Hover states */
+      /* Hover backgrounds */
+      .hover\\:bg-primary-50:hover { background-color: ${primaryShades[50]} !important; }
+      .hover\\:bg-primary-100:hover { background-color: ${primaryShades[100]} !important; }
       .hover\\:bg-primary-600:hover { background-color: ${primaryShades[600]} !important; }
+      .dark .dark\\:hover\\:bg-primary-900\\/30:hover { background-color: ${primaryShades[900]}4D !important; }
+      .dark .dark\\:hover\\:bg-primary-950\\/40:hover { background-color: ${primaryShades[900]}66 !important; }
       
       /* ========== BORDER COLORS ========== */
       .border-primary-500 { border-color: ${primaryShades[500]} !important; }
       .border-primary-600 { border-color: ${primaryShades[600]} !important; }
+      .hover\\:border-primary-500:hover { border-color: ${primaryShades[500]} !important; }
+      .dark .dark\\:hover\\:border-primary-500:hover { border-color: ${primaryShades[500]} !important; }
       .ring-primary-500 { --tw-ring-color: ${primaryShades[500]} !important; }
       .ring-2 { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
       
@@ -328,6 +344,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       }
       ::-webkit-scrollbar-thumb:hover {
         background-color: ${currentTheme.accent} !important;
+      }
+
+      /* Text selection */
+      ::selection {
+        background-color: ${currentTheme.primary} !important;
+        color: #ffffff !important;
       }
     `;
 

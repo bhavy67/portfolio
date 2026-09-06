@@ -28,7 +28,7 @@ const Experience = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            My professional journey and the amazing companies I've worked with
+            My professional journey and the amazing companies I have worked with
           </motion.p>
         </div>
 
