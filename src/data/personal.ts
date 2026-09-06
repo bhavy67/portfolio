@@ -15,6 +15,11 @@ export const personalInfo = {
   phone: personalConfig.contact.phone,
   bio: personalConfig.personal.bio,
   yearsOfExperience: personalConfig.personal.yearsOfExperience,
+  availability: {
+    status: personalConfig.personal.availability.status as 'open' | 'busy' | 'closed',
+    label: personalConfig.personal.availability.label,
+    responseTime: personalConfig.personal.availability.responseTime,
+  },
   resumeUrl: resumePdf, // Using imported PDF from assets
   profileImage: profileImage, // Using imported image from assets
   website: personalConfig.contact.website,

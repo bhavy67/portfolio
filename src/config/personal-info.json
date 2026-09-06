@@ -4,10 +4,15 @@
     "lastName": "Ladani",
     "fullName": "Bhavy Ladani",
     "initials": "BL",
-    "title": "Full Stack Software Engineer",
-    "tagline": "Building scalable web solutions with modern technologies",
-    "bio": "Passionate software developer with 3 years of experience in building responsive, user-friendly web applications. Specialized in React, Node.js, and cloud technologies. Love solving complex problems and creating elegant solutions.",
+    "title": "Product Engineer",
+    "tagline": "I design, build, and ship full-stack web apps. From idea to production.",
+    "bio": "Product-minded engineer with 4+ years of experience building full-stack web apps. I care about craft, performance, and shipping things people actually use.",
     "yearsOfExperience": "4+",
+    "availability": {
+      "status": "open",
+      "label": "Open to opportunities",
+      "responseTime": "Responds within 24h"
+    },
     "location": {
       "city": "Ahmedabad",
       "state": "Gujarat",

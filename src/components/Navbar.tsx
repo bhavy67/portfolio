@@ -159,6 +159,7 @@ const Navbar = () => {
     { name: 'Education', href: '#education' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Activity', href: '#activity' },
     { name: 'Blogs', href: '#blogs' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -184,8 +185,8 @@ const Navbar = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'glass shadow-lg py-3 md:py-4'
-            : 'bg-transparent py-4 md:py-6'
+            ? 'glass shadow-lg py-3 nav:py-4'
+            : 'bg-transparent py-4 nav:py-6'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -197,7 +198,7 @@ const Navbar = () => {
             <Logo onNavigate={() => scrollToSection('#home')} />
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden nav:flex items-center gap-8">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
@@ -221,7 +222,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex items-center gap-3 md:hidden">
+            <div className="flex items-center gap-3 nav:hidden">
               <ThemeSwitcher />
 
               <motion.button
@@ -239,7 +240,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <motion.div
-        className={`fixed inset-0 z-30 md:hidden ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-30 nav:hidden ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}

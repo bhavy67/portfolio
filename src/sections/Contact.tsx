@@ -57,6 +57,30 @@ const Contact = () => {
           </motion.p>
         </div>
 
+        {/* Availability Signal */}
+        <motion.div
+          className="max-w-4xl mx-auto mb-8 sm:mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 }}
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl border border-dark-200 dark:border-dark-700 bg-dark-50/50 dark:bg-dark-800/50">
+            <div className="flex items-center gap-3">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+              </span>
+              <span className="text-sm font-semibold text-dark-900 dark:text-white">
+                {personalInfo.availability.label}
+              </span>
+            </div>
+            <span className="text-xs sm:text-sm text-dark-500 dark:text-dark-400">
+              {personalInfo.availability.responseTime}
+            </span>
+          </div>
+        </motion.div>
+
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
           {/* Social Links */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
