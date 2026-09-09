@@ -8,7 +8,7 @@ import Experience from './sections/Experience';
 import Education from './sections/Education';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
-import GitHubActivity from './sections/GitHubActivity';
+import ActivityAndMusic from './sections/ActivityAndMusic';
 import Blogs from './sections/Blogs';
 import Contact from './sections/Contact';
 
@@ -29,9 +29,9 @@ function App() {
           <Education />
           <Skills />
           <Projects />
-          <GitHubActivity />
           <Blogs />
-<Contact />
+          <ActivityAndMusic />
+          <Contact />
         </main>
         <Footer />
       </div>

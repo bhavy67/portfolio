@@ -34,75 +34,74 @@ const GitHubActivity = () => {
   }, [currentTheme]);
 
   return (
-    <section id="activity" className="section-container">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        {/* Header */}
-        <div className="text-center mb-10 sm:mb-14">
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            GitHub <span className="gradient-text">Activity</span>
-          </motion.h2>
-          <motion.p
-            className="text-dark-600 dark:text-dark-400 text-base sm:text-lg max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
-            A year of commits, side projects, and building in public.
-          </motion.p>
-        </div>
-
-        {/* Calendar */}
-        <motion.div
-          className="card p-4 sm:p-8"
+    <motion.div
+      className="h-full flex flex-col"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Header */}
+      <div className="text-center mb-10 sm:mb-14">
+        <motion.h2
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
         >
-          {/* Scrollable on mobile */}
-          <div className="overflow-x-auto pb-2">
-            <div className="min-w-[600px]">
-              <GitHubCalendar
-                username={personalInfo.social.githubUsername}
-                colorScheme={currentTheme.isDark ? 'dark' : 'light'}
-                theme={calendarTheme}
-                blockSize={13}
-                blockMargin={4}
-                fontSize={12}
-              />
-            </div>
-          </div>
+          GitHub <span className="gradient-text">Activity</span>
+        </motion.h2>
+        <motion.p
+          className="text-dark-600 dark:text-dark-400 text-base sm:text-lg max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+        >
+          A year of commits, side projects, and building in public.
+        </motion.p>
+      </div>
 
-          {/* GitHub link */}
-          <div className="mt-6 pt-5 border-t border-dark-200 dark:border-dark-700 flex items-center justify-between flex-wrap gap-3">
-            <div className="flex items-center gap-2 text-dark-500 dark:text-dark-400 text-sm">
-              <FiGithub className="shrink-0" />
-              <span>@{personalInfo.social.githubUsername}</span>
-            </div>
-            <a
-              href={personalInfo.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
-            >
-              View full profile
-              <FiExternalLink size={13} />
-            </a>
+      {/* Calendar */}
+      <motion.div
+        className="card p-4 sm:p-8 flex-1"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2 }}
+      >
+        {/* Scrollable on mobile */}
+        <div className="overflow-x-auto pb-2">
+          <div className="min-w-[600px]">
+            <GitHubCalendar
+              username={personalInfo.social.githubUsername}
+              colorScheme={currentTheme.isDark ? 'dark' : 'light'}
+              theme={calendarTheme}
+              blockSize={16}
+              blockMargin={5}
+              fontSize={13}
+            />
           </div>
-        </motion.div>
+        </div>
+
+        {/* GitHub link */}
+        <div className="mt-6 pt-5 border-t border-dark-200 dark:border-dark-700 flex items-center justify-between flex-wrap gap-3">
+          <div className="flex items-center gap-2 text-dark-500 dark:text-dark-400 text-sm">
+            <FiGithub className="shrink-0" />
+            <span>@{personalInfo.social.githubUsername}</span>
+          </div>
+          <a
+            href={personalInfo.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
+          >
+            View full profile
+            <FiExternalLink size={13} />
+          </a>
+        </div>
       </motion.div>
-    </section>
+    </motion.div>
   );
 };
 
