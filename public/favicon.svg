@@ -1,21 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <!-- Modern gradient: Slate Blue to Teal (theme-neutral) -->
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#1E293B;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    <!-- Background: premium near-black -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1117"/>
+      <stop offset="100%" stop-color="#161C24"/>
     </linearGradient>
-    <!-- Subtle accent gradient for text -->
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
+
+    <!-- Slash: matches the nav logo gradient-text (Arctic primary → accent) -->
+    <linearGradient id="slash" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0891B2"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
     </linearGradient>
+
+    <!-- Glow behind the slash -->
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <!-- Background with rounded corners -->
-  <rect width="100" height="100" rx="22" fill="url(#grad1)"/>
-  <!-- Subtle border -->
-  <rect width="100" height="100" rx="22" fill="none" stroke="url(#textGrad)" stroke-width="2" opacity="0.3"/>
-  <!-- Text with gradient -->
-  <text x="50" y="70" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="52" font-weight="800" fill="url(#textGrad)" text-anchor="middle">BL</text>
+
+  <!-- Background pill -->
+  <rect width="100" height="100" rx="22" fill="url(#bg)"/>
+
+  <!-- Hairline border — barely visible, adds definition -->
+  <rect width="100" height="100" rx="22" fill="none" stroke="#22D3EE" stroke-width="1.5" opacity="0.1"/>
+
+  <!-- The / — geometric parallelogram for pixel-perfect crispness at any size -->
+  <polygon
+    points="15,80 27,80 51,20 39,20"
+    fill="url(#slash)"
+    filter="url(#glow)"
+  />
+
+  <!-- The b — warm white, Courier New for monospace feel -->
+  <text
+    x="53" y="79"
+    font-family="'Courier New', Courier, monospace"
+    font-size="57"
+    font-weight="700"
+    fill="#F0F4FF"
+  >b</text>
+
+  <!-- Terminal cursor — matches the slash accent colour -->
+  <rect x="87" y="50" width="5" height="28" rx="1.5" fill="#22D3EE" opacity="0.65"/>
 </svg>
