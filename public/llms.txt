@@ -1,0 +1,32 @@
+# Bhavy Ladani
+
+> Product Engineer with 4+ years building full-stack web apps. Open to opportunities. Based in Ahmedabad, India.
+
+## About
+
+Bhavy Ladani is a Product Engineer currently working at Anblicks Inc. as Software Developer 2 (June 2024 – present). Previously at Weboccult Technologies (August 2022 – May 2024) and Codeflash Infotech (internship, 2022). He holds a B.Tech in Computer Science from Gujarat Technological University (2019–2023, 8.54 GPA).
+
+- [Portfolio](https://bhavyladani.vercel.app): Main site with projects, experience, writing, and contact
+- [Resume](https://bhavyladani.vercel.app/BhavyLadani_SoftwareDeveloper.pdf): Full CV / PDF
+
+## Projects
+
+- [Ahmedabad Metro Tracker](https://ahmedabad-metro-tracker.vercel.app/): Live PWA for the GMRC Ahmedabad Metro — real-time train positions on a MapLibre map, journey planner with fare and transfer details, offline support
+- [Fixitt](https://fixitt.vercel.app/): 40+ privacy-first browser-based file tools — PDF, image, OCR, and data utilities, fully offline-capable as a PWA
+- [LockKaro](https://lockkaro.vercel.app): Private document vault built with Next.js 15 and Supabase — IDs, insurance, degrees with expiry tracking and reminders
+- [Splititt](https://splititt.vercel.app/): Group expense splitter with real-time Supabase sync and optimized settlement suggestions
+- [Life In Weeks](https://gridoflife.vercel.app): Life visualization as a scrollable grid of weeks — pin memories, define eras, download as phone wallpaper
+- [Claude Dashboard](https://github.com/bhavy67/claude-dashboard): Local analytics dashboard for Claude Code token usage and session history — nothing leaves your machine
+
+## Writing
+
+- [Hashnode Blog](https://bhavycodes.hashnode.dev): Technical articles on React, JavaScript, TypeScript, and web development
+- [Dev.to](https://dev.to/bhavyladani): Cross-posted technical writing
+
+## Contact
+
+- Email: bhavy.ladani6701@gmail.com
+- GitHub: https://github.com/bhavy67
+- LinkedIn: https://linkedin.com/in/bhavyladani
+- LeetCode: https://leetcode.com/bhavyladani
+- Location: Ahmedabad, Gujarat, India

@@ -2,32 +2,182 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary Meta Tags -->
-    <title>Bhavy Ladani - Full Stack Software Developer | Portfolio</title>
-    <meta name="title" content="Bhavy Ladani - Full Stack Software Developer | Portfolio" />
-    <meta name="description" content="Experienced Full Stack Developer specializing in React, Node.js, and modern web technologies. Building scalable web solutions with 4+ years of experience." />
-    <meta name="keywords" content="Bhavy Ladani, software developer, full stack developer, react developer, web development, portfolio" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Canonical — collapses www/non-www/http duplicates into one ranking signal -->
+    <link rel="canonical" href="https://bhavyladani.vercel.app/" />
+
+    <!-- ═══════════════════════════════════════════════
+         PRIMARY META
+    ═══════════════════════════════════════════════ -->
+    <title>Bhavy Ladani | Product Engineer & Full Stack Developer</title>
+    <meta name="description" content="Bhavy Ladani is a Product Engineer from Ahmedabad with 4+ years building full-stack web apps in React, Node.js, and TypeScript. Open to opportunities." />
     <meta name="author" content="Bhavy Ladani" />
-    
-    <!-- Open Graph / Facebook -->
+    <!-- max-image-preview:large unlocks full-size image previews in Google Search -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- ═══════════════════════════════════════════════
+         OPEN GRAPH  (LinkedIn, Slack, Discord, Facebook…)
+    ═══════════════════════════════════════════════ -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourportfolio.com/" />
-    <meta property="og:title" content="Bhavy Ladani - Full Stack Software Developer" />
-    <meta property="og:description" content="Experienced Full Stack Developer specializing in React, Node.js, and modern web technologies." />
-    <meta property="og:image" content="https://yourportfolio.com/og-image.jpg" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://yourportfolio.com/" />
-    <meta property="twitter:title" content="Bhavy Ladani - Full Stack Software Developer" />
-    <meta property="twitter:description" content="Experienced Full Stack Developer specializing in React, Node.js, and modern web technologies." />
-    <meta property="twitter:image" content="https://yourportfolio.com/og-image.jpg" />
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#7C3AED" />
+    <meta property="og:url" content="https://bhavyladani.vercel.app/" />
+    <meta property="og:site_name" content="Bhavy Ladani" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Bhavy Ladani | Product Engineer & Full Stack Developer" />
+    <meta property="og:description" content="Bhavy Ladani is a Product Engineer from Ahmedabad with 4+ years building full-stack web apps in React, Node.js, and TypeScript. Open to opportunities." />
+    <meta property="og:image" content="https://bhavyladani.vercel.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Bhavy Ladani — Product Engineer & Full Stack Developer" />
+
+    <!-- ═══════════════════════════════════════════════
+         TWITTER / X CARD  (spec uses name=, not property=)
+    ═══════════════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://bhavyladani.vercel.app/" />
+    <meta name="twitter:title" content="Bhavy Ladani | Product Engineer & Full Stack Developer" />
+    <meta name="twitter:description" content="Bhavy Ladani is a Product Engineer from Ahmedabad with 4+ years building full-stack web apps in React, Node.js, and TypeScript." />
+    <meta name="twitter:image" content="https://bhavyladani.vercel.app/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Bhavy Ladani — Product Engineer & Full Stack Developer" />
+
+    <!-- Theme colour — matches Arctic primary -->
+    <meta name="theme-color" content="#0891B2" />
+
+    <!-- Preconnect to font origins so they don't block render -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ═══════════════════════════════════════════════
+         STRUCTURED DATA  (JSON-LD)
+         Three schemas in one @graph:
+           1. Person + ProfilePage  →  Knowledge Panel / AI Overview cards
+           2. WebSite               →  Sitelinks search box eligibility
+           3. ItemList              →  project links surfaced in AI answers
+    ═══════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Person", "ProfilePage"],
+          "@id": "https://bhavyladani.vercel.app/#person",
+          "name": "Bhavy Ladani",
+          "givenName": "Bhavy",
+          "familyName": "Ladani",
+          "jobTitle": "Product Engineer",
+          "description": "Product-minded engineer with 4+ years of experience building full-stack web apps. I care about craft, performance, and shipping things people actually use.",
+          "url": "https://bhavyladani.vercel.app",
+          "email": "bhavy.ladani6701@gmail.com",
+          "image": "https://bhavyladani.vercel.app/og-image.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ahmedabad",
+            "addressRegion": "Gujarat",
+            "addressCountry": "IN"
+          },
+          "sameAs": [
+            "https://github.com/bhavy67",
+            "https://linkedin.com/in/bhavyladani",
+            "https://dev.to/bhavyladani",
+            "https://bhavycodes.hashnode.dev",
+            "https://leetcode.com/bhavyladani"
+          ],
+          "knowsAbout": [
+            "React", "Angular", "Next.js", "TypeScript", "JavaScript",
+            "Node.js", "Python", "FastAPI", "GraphQL", "Docker", "AWS",
+            "Full Stack Development", "Frontend Development", "Web Development",
+            "Software Engineering"
+          ],
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Gujarat Technological University",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Ahmedabad",
+              "addressRegion": "Gujarat",
+              "addressCountry": "IN"
+            }
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Anblicks Inc."
+          },
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Software Developer",
+            "occupationLocation": {
+              "@type": "City",
+              "name": "Ahmedabad"
+            },
+            "skills": "React, Angular, TypeScript, JavaScript, Node.js, Python, GraphQL, Docker, AWS"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://bhavyladani.vercel.app/#website",
+          "name": "Bhavy Ladani",
+          "alternateName": "Bhavy Ladani Portfolio",
+          "url": "https://bhavyladani.vercel.app",
+          "description": "Portfolio of Bhavy Ladani — Product Engineer specializing in React, Node.js, and full-stack web development.",
+          "author": { "@id": "https://bhavyladani.vercel.app/#person" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "ItemList",
+          "name": "Projects by Bhavy Ladani",
+          "description": "Product and open-source work by Bhavy Ladani",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Ahmedabad Metro Tracker",
+              "description": "Live offline-capable PWA for the Ahmedabad Metro network with real-time train positions, departure boards, and journey planner.",
+              "url": "https://ahmedabad-metro-tracker.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Claude Dashboard",
+              "description": "Local analytics dashboard for Claude Code — track token usage, cost, model distribution, and session history. Nothing leaves your machine.",
+              "url": "https://github.com/bhavy67/claude-dashboard"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Fixitt",
+              "description": "40+ privacy-first file processing tools running entirely in the browser. PDF, image, OCR, and data utilities — your files never leave the tab.",
+              "url": "https://fixitt.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "LockKaro",
+              "description": "Private document vault for IDs, insurance, and documents with expiry tracking, reminders, and activity timeline. Built with Next.js 15 and Supabase.",
+              "url": "https://lockkaro.vercel.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Splititt",
+              "description": "Smart group expense splitter with real-time Supabase sync and optimized settlement suggestions.",
+              "url": "https://splititt.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "Life In Weeks",
+              "description": "Minimal life-visualization tool that renders your existence as a grid of weeks with pinned memories and downloadable wallpapers.",
+              "url": "https://gridoflife.vercel.app"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
