@@ -9,7 +9,6 @@ export type Theme = {
   accent: string;
   background: string;
   text: string;
-  icon: string;
 };
 
 export const themes: Theme[] = [
@@ -22,7 +21,6 @@ export const themes: Theme[] = [
     accent: '#22D3EE',
     background: '#FFFFFF',
     text: '#1E293B',
-    icon: '❄️',
   },
   {
     id: 'solar-light',
@@ -32,7 +30,6 @@ export const themes: Theme[] = [
     accent: '#F97316',
     background: '#FFFFFF',
     text: '#1C1917',
-    icon: '⚡',
   },
   {
     id: 'crimson-light',
@@ -42,7 +39,6 @@ export const themes: Theme[] = [
     accent: '#F43F5E',
     background: '#FFFFFF',
     text: '#111827',
-    icon: '🔴',
   },
   // Dark Themes — muted, calm, easy on the eyes
   {
@@ -53,7 +49,6 @@ export const themes: Theme[] = [
     accent: '#9ECEFF',
     background: '#0F172A',
     text: '#C0CAF5',
-    icon: '🌙',
   },
   {
     id: 'haze-dark',
@@ -63,7 +58,6 @@ export const themes: Theme[] = [
     accent: '#BDA3D8',
     background: '#0F172A',
     text: '#E4D9F4',
-    icon: '🌆',
   },
   {
     id: 'jade-dark',
@@ -73,7 +67,6 @@ export const themes: Theme[] = [
     accent: '#7EC4A4',
     background: '#0F172A',
     text: '#D4EDE3',
-    icon: '💚',
   },
 ];
 
