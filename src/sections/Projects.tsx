@@ -132,10 +132,13 @@ const Projects = () => {
                   {project.date}
                 </p>
 
-                {/* View Project Link */}
+                {/* Live / Repo Link */}
                 <div className="flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 font-medium group-hover:gap-3 transition-all">
-                  <span>View Project</span>
-                  <FiExternalLink size={16} />
+                  <span>{project.liveLabel}</span>
+                  {project.liveLabel === 'View on GitHub'
+                    ? <FiGithub size={15} />
+                    : <FiExternalLink size={15} />
+                  }
                 </div>
               </div>
             </motion.a>
