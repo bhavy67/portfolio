@@ -57,7 +57,7 @@ const SplashOverlay = ({ x, y, gradient, maxRadius, duration, onCovered, onDone 
 
       // Two rAFs: lets browser process the style recalc before fade begins
       await new Promise<void>(resolve =>
-        requestAnimationFrame(() => requestAnimationFrame(resolve))
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
       );
 
       // Phase 2 — fade out (opacity is compositor-thread)
