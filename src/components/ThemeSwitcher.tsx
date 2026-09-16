@@ -6,26 +6,23 @@ import { FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from '../context/ThemeContext';
 
 // ─── Splash Overlay ────────────────────────────────────────────────────────────
-// Portal div animated exclusively with `transform` + `opacity` — the only two
-// CSS properties guaranteed to run on the GPU compositor thread. clip-path and
-// clip-region require per-frame software rasterization (main thread), which is
-// why the previous implementation was jittery.
+// Full-screen reveal expanding from top-center via clip-path: circle().
+// Geometric clip-paths (circle, ellipse, inset) ARE GPU-composited in
+// Chrome 88+ and Safari 13.1+; only complex polygon paths hit the software
+// rasteriser. Fixed origin at (50%, 0px) creates the "wand-from-above" feel —
+// the magic always descends from the top, never from a random click point.
 //
-// The circle is a border-radius:50% div centered at the click/touch point.
-// Scaling from 0→1 expands it outward from that origin.
+// Easing: cubic-bezier(0.16, 1, 0.3, 1) — easeOutExpo
+//   Ultra-fast burst at t=0 (the snap), long graceful deceleration to the end.
+//   Maps to a magician's wrist motion: forceful initiation, elegant landing.
 //
 // Timing:
-//   Phase 1 — scale(0→1)        covers entire viewport              (compositor)
-//   onCovered                    setTheme() + CSS injection          (main thread, hidden)
-//   Double rAF + 40ms settle     browser finishes style recalc
-//   Phase 2 — opacity(1→0)       reveals new theme                  (compositor)
-//
-// Duration scales with maxRadius so the ripple front moves at ~2 000 px/s
-// regardless of screen size — phone feels as snappy as desktop.
+//   Phase 1 — circle(0→maxR)   easeOutExpo, covers viewport        (compositor)
+//   onCovered                   setTheme() + CSS injection          (main thread, hidden)
+//   Double rAF + settle         browser finishes style recalc
+//   Phase 2 — opacity(1→0)     curtain dissolve reveals new theme  (compositor)
 
 type SplashProps = {
-  x: number;
-  y: number;
   gradient: string;
   maxRadius: number;
   duration: number;
@@ -33,7 +30,7 @@ type SplashProps = {
   onDone: () => void;
 };
 
-const SplashOverlay = ({ x, y, gradient, maxRadius, duration, onCovered, onDone }: SplashProps) => {
+const SplashOverlay = ({ gradient, maxRadius, duration, onCovered, onDone }: SplashProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,23 +44,26 @@ const SplashOverlay = ({ x, y, gradient, maxRadius, duration, onCovered, onDone 
     }
 
     (async () => {
-      // Phase 1 — expand (transform: scale is compositor-thread)
+      // Phase 1 — clip-path circle expands from top-center
       await el.animate(
-        [{ transform: 'scale(0)' }, { transform: 'scale(1)' }],
-        { duration, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'forwards' }
+        [
+          { clipPath: 'circle(0px at 50% 0px)' },
+          { clipPath: `circle(${maxRadius}px at 50% 0px)` },
+        ],
+        { duration, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'forwards' }
       ).finished;
 
-      onCovered(); // ← setTheme() fires here while page is hidden
+      onCovered(); // ← setTheme() fires here while page is fully covered
 
-      // Two rAFs: lets browser process the style recalc before fade begins
+      // Two rAFs: lets browser finish style recalc before the fade begins
       await new Promise<void>(resolve =>
         requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
       );
 
-      // Phase 2 — fade out (opacity is compositor-thread)
+      // Phase 2 — dissolve out, revealing the newly-themed page
       await el.animate(
         [{ opacity: 1 }, { opacity: 0 }],
-        { duration: 280, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' }
+        { duration: 240, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' }
       ).finished;
 
       onDone();
@@ -76,17 +76,13 @@ const SplashOverlay = ({ x, y, gradient, maxRadius, duration, onCovered, onDone 
       ref={ref}
       style={{
         position: 'fixed',
-        width: `${maxRadius * 2}px`,
-        height: `${maxRadius * 2}px`,
-        borderRadius: '50%',
-        left: `${x - maxRadius}px`,
-        top: `${y - maxRadius}px`,
-        // Radial gradient: bright accent at origin → primary toward edges
-        // Mimics real ink spreading from a point, instead of a flat colour flood
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         background: gradient,
-        transform: 'scale(0)',
-        transformOrigin: 'center center',
-        willChange: 'transform, opacity',
+        clipPath: 'circle(0px at 50% 0px)',
+        willChange: 'clip-path, opacity',
         zIndex: 9999,
         pointerEvents: 'none',
       }}
@@ -108,28 +104,22 @@ const ThemeSwitcher = () => {
   const lightThemes = themes.filter(t => !t.isDark);
   const darkThemes = themes.filter(t => t.isDark);
 
-  const handleThemeSelect = (themeId: string, event: React.MouseEvent) => {
+  const handleThemeSelect = (themeId: string) => {
     if (splash) return;
 
-    // clientX/clientY is populated by React for both mouse and touch (synthesized)
-    const { clientX: x, clientY: y } = event;
     const next = themes.find(t => t.id === themeId)!;
-    const maxRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
+    // Distance from top-center (50%, 0%) to the farthest viewport corner
+    const maxRadius = Math.ceil(Math.hypot(window.innerWidth / 2, window.innerHeight)) + 20;
 
     pendingId.current = themeId;
     setIsOpen(false);
     setSplash({
-      x,
-      y,
-      // Radial from touch origin: accent (bright) → primary (deep)
-      // Far more natural than a diagonal linear gradient
-      gradient: `radial-gradient(circle at center, ${next.accent} 0%, ${next.primary} 65%)`,
+      // Gradient radiates from the reveal origin: bright accent at top, deep primary toward edges
+      // Creates the sensation of light pouring down as the new theme descends
+      gradient: `radial-gradient(circle at 50% 0%, ${next.accent} 0%, ${next.primary} 60%)`,
       maxRadius,
-      // ~2 800 px/s — consistent velocity across all screen sizes
-      duration: Math.round(Math.min(380, Math.max(220, maxRadius / 2.8))),
+      // ~2px/ms base velocity — scaled so large displays don't feel sluggish
+      duration: Math.round(Math.min(680, Math.max(480, maxRadius / 2))),
     });
   };
 
@@ -217,14 +207,13 @@ const ThemeSwitcher = () => {
                         return (
                           <motion.button
                             key={theme.id}
-                            onClick={(e) => handleThemeSelect(theme.id, e)}
+                            onClick={() => handleThemeSelect(theme.id)}
                             className={`relative rounded-xl overflow-hidden outline-none ${
                               isActive
                                 ? 'ring-2 ring-offset-2 ring-offset-white dark:ring-offset-dark-900'
                                 : ''
                             }`}
                             style={{
-                              // Prevent double-tap zoom on iOS, speeds up tap response
                               touchAction: 'manipulation',
                               ...(isActive
                                 ? ({ '--tw-ring-color': theme.primary } as React.CSSProperties)
