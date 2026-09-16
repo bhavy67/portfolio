@@ -6,36 +6,41 @@ import { FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from '../context/ThemeContext';
 
 // ─── Splash Overlay ────────────────────────────────────────────────────────────
-// Full-screen reveal expanding from top-center via clip-path: circle().
-// Geometric clip-paths (circle, ellipse, inset) ARE GPU-composited in
-// Chrome 88+ and Safari 13.1+; only complex polygon paths hit the software
-// rasteriser. Fixed origin at (50%, 0px) creates the "wand-from-above" feel —
-// the magic always descends from the top, never from a random click point.
+// Synchronized wipe transition — the overlay covers the full screen at t=0,
+// the theme switches while hidden, then the overlay retreats top→bottom.
 //
-// Easing: cubic-bezier(0.16, 1, 0.3, 1) — easeOutExpo
-//   Ultra-fast burst at t=0 (the snap), long graceful deceleration to the end.
-//   Maps to a magician's wrist motion: forceful initiation, elegant landing.
+// Two elements animate in lockstep (same duration + easing = exact pixel sync):
+//   overlay  — full-screen div, clip-path inset grows from top (0%→100%)
+//   blade    — 3px glowing strip, translateY(0→innerHeight) tracks the clip edge
 //
-// Timing:
-//   Phase 1 — circle(0→maxR)   easeOutExpo, covers viewport        (compositor)
-//   onCovered                   setTheme() + CSS injection          (main thread, hidden)
-//   Double rAF + settle         browser finishes style recalc
-//   Phase 2 — opacity(1→0)     curtain dissolve reveals new theme  (compositor)
+// clip-path: inset(top right bottom left)
+//   inset(0% 0 0 0)   → entire overlay visible (screen covered)
+//   inset(100% 0 0 0) → overlay clipped entirely from top (nothing visible)
+//
+// As the clip top crosses each pixel row, that row is revealed in the new theme.
+// The blade marks the live edge — a glow of the accent color that feels like
+// light catching the page as it turns.
+//
+// Easing: cubic-bezier(0.55, 0, 1, 0.45) — easeIn-heavy
+//   Starts almost still, builds momentum, slams through the bottom. No brake.
+//   Reads as gravity doing the work — the page drops.
 
 type SplashProps = {
   gradient: string;
-  maxRadius: number;
+  accentColor: string;
   duration: number;
   onCovered: () => void;
   onDone: () => void;
 };
 
-const SplashOverlay = ({ gradient, maxRadius, duration, onCovered, onDone }: SplashProps) => {
-  const ref = useRef<HTMLDivElement>(null);
+const SplashOverlay = ({ gradient, accentColor, duration, onCovered, onDone }: SplashProps) => {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const bladeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const overlay = overlayRef.current;
+    const blade = bladeRef.current;
+    if (!overlay || !blade) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       onCovered();
@@ -44,27 +49,29 @@ const SplashOverlay = ({ gradient, maxRadius, duration, onCovered, onDone }: Spl
     }
 
     (async () => {
-      // Phase 1 — clip-path circle expands from top-center
-      await el.animate(
-        [
-          { clipPath: 'circle(0px at 50% 0px)' },
-          { clipPath: `circle(${maxRadius}px at 50% 0px)` },
-        ],
-        { duration, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'forwards' }
-      ).finished;
+      // Theme switches immediately while the full overlay hides the recalc
+      onCovered();
 
-      onCovered(); // ← setTheme() fires here while page is fully covered
-
-      // Two rAFs: lets browser finish style recalc before the fade begins
+      // Let browser finish the style recalc before the wipe begins
       await new Promise<void>(resolve =>
         requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
       );
 
-      // Phase 2 — dissolve out, revealing the newly-themed page
-      await el.animate(
-        [{ opacity: 1 }, { opacity: 0 }],
-        { duration: 240, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' }
-      ).finished;
+      const easing = 'cubic-bezier(0.55, 0, 1, 0.45)';
+      const opts = { duration, easing, fill: 'forwards' } as const;
+      const h = window.innerHeight;
+
+      // Both animations share identical timing — clip edge and blade stay pixel-perfect in sync
+      await Promise.all([
+        overlay.animate(
+          [{ clipPath: 'inset(0% 0 0 0)' }, { clipPath: 'inset(100% 0 0 0)' }],
+          opts
+        ).finished,
+        blade.animate(
+          [{ transform: 'translateY(0px)' }, { transform: `translateY(${h}px)` }],
+          opts
+        ).finished,
+      ]);
 
       onDone();
     })();
@@ -72,21 +79,43 @@ const SplashOverlay = ({ gradient, maxRadius, duration, onCovered, onDone }: Spl
   }, []);
 
   return createPortal(
-    <div
-      ref={ref}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: gradient,
-        clipPath: 'circle(0px at 50% 0px)',
-        willChange: 'clip-path, opacity',
-        zIndex: 9999,
-        pointerEvents: 'none',
-      }}
-    />,
+    <>
+      {/* Main overlay — retreats downward, revealing new theme from top */}
+      <div
+        ref={overlayRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: gradient,
+          clipPath: 'inset(0% 0 0 0)',
+          willChange: 'clip-path',
+          zIndex: 9998,
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Blade — glowing sweep line at the live reveal edge */}
+      <div
+        ref={bladeRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '3px',
+          background: accentColor,
+          boxShadow: [
+            `0 -6px 20px 6px ${accentColor}55`,
+            `0  4px 12px 3px ${accentColor}40`,
+          ].join(', '),
+          willChange: 'transform',
+          zIndex: 9999,
+          pointerEvents: 'none',
+        }}
+      />
+    </>,
     document.body
   );
 };
@@ -108,18 +137,14 @@ const ThemeSwitcher = () => {
     if (splash) return;
 
     const next = themes.find(t => t.id === themeId)!;
-    // Distance from top-center (50%, 0%) to the farthest viewport corner
-    const maxRadius = Math.ceil(Math.hypot(window.innerWidth / 2, window.innerHeight)) + 20;
 
     pendingId.current = themeId;
     setIsOpen(false);
     setSplash({
-      // Gradient radiates from the reveal origin: bright accent at top, deep primary toward edges
-      // Creates the sensation of light pouring down as the new theme descends
-      gradient: `radial-gradient(circle at 50% 0%, ${next.accent} 0%, ${next.primary} 60%)`,
-      maxRadius,
-      // ~2px/ms base velocity — scaled so large displays don't feel sluggish
-      duration: Math.round(Math.min(680, Math.max(480, maxRadius / 2))),
+      // Accent at top (wipe origin — most vibrant) deepening to primary at bottom
+      gradient: `linear-gradient(to bottom, ${next.accent} 0%, ${next.primary} 100%)`,
+      accentColor: next.accent,
+      duration: Math.round(Math.min(640, Math.max(500, window.innerHeight * 0.7))),
     });
   };
 
@@ -161,11 +186,11 @@ const ThemeSwitcher = () => {
           {splash && (
             <motion.span
               className="absolute inset-0 rounded-lg border-2 pointer-events-none"
-              style={{ borderColor: currentTheme.primary }}
-              initial={{ opacity: 0.8, scale: 1 }}
-              animate={{ opacity: 0, scale: 1.6 }}
+              style={{ borderColor: currentTheme.accent }}
+              initial={{ opacity: 0.9, scale: 1 }}
+              animate={{ opacity: 0, scale: 1.7 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.65, ease: 'easeOut' }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
             />
           )}
         </AnimatePresence>
