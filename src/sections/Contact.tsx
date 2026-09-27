@@ -1,20 +1,25 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+// import { useEffect } from 'react'; // used by rotating quotes (commented out below)
 import { FiMail, FiPhone, FiMapPin, FiGithub } from 'react-icons/fi';
 import { FiLinkedin } from 'react-icons/fi';
 import { SiHashnode } from 'react-icons/si';
 import { personalInfo } from '../data/personal';
-import { getRandomQuote } from '../data/quotes';
+// import { getRandomQuote } from '../data/quotes';
+import { featuredHindiQuote } from '../data/quotes';
 import { useTheme } from '../context/ThemeContext';
 
 const Contact = () => {
   const { currentTheme } = useTheme();
-  const [quote, setQuote] = useState(getRandomQuote());
+  const [showMeaning, setShowMeaning] = useState(false);
 
-  // Change quote when theme changes
-  useEffect(() => {
-    setQuote(getRandomQuote());
-  }, [currentTheme]);
+  // Rotating English quotes — disabled in favour of the featured Hindi quote.
+  // const [quote, setQuote] = useState(getRandomQuote());
+  //
+  // // Change quote when theme changes
+  // useEffect(() => {
+  //   setQuote(getRandomQuote());
+  // }, [currentTheme]);
 
   const contactInfo = [
     { icon: FiMail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
@@ -156,8 +161,8 @@ const Contact = () => {
             ))}
           </div>
 
-          {/* Quote */}
-          <motion.div
+          {/* Quote (rotating English quotes — kept for future use) */}
+          {/* <motion.div
             className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-600 text-white text-center"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -169,7 +174,100 @@ const Contact = () => {
               "{quote.text}"
             </p>
             <p className="text-sm sm:text-base md:text-lg opacity-90">- {quote.author}</p>
-          </motion.div>
+          </motion.div> */}
+
+          {/* Featured Hindi Quote */}
+          <figure
+            className="relative max-w-2xl mx-auto pt-6 sm:pt-10 cursor-pointer select-none"
+            // Hover on mouse, tap-to-toggle on touch
+            onPointerEnter={(e) => e.pointerType === 'mouse' && setShowMeaning(true)}
+            onPointerLeave={(e) => e.pointerType === 'mouse' && setShowMeaning(false)}
+            onPointerUp={(e) => e.pointerType !== 'mouse' && setShowMeaning((prev) => !prev)}
+          >
+            {/* Ornamental divider (top) */}
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8" aria-hidden="true">
+              <span className="h-px flex-1" style={{ background: `linear-gradient(to right, transparent, ${currentTheme.primary}80)` }} />
+              <span className="text-lg" style={{ color: currentTheme.primary }}>❁</span>
+              <span className="h-px flex-1" style={{ background: `linear-gradient(to left, transparent, ${currentTheme.primary}80)` }} />
+            </div>
+
+            {/* Faint oversized quote mark */}
+            <span
+              className="absolute -top-2 sm:-top-4 left-0 sm:-left-4 text-[6rem] sm:text-[9rem] leading-none font-serif opacity-10 pointer-events-none"
+              style={{ color: currentTheme.primary }}
+              aria-hidden="true"
+            >
+              ❝
+            </span>
+
+            {/* Couplet — offset lines, ink reveal */}
+            <blockquote lang="hi" className="relative font-hindi text-xl sm:text-2xl md:text-3xl leading-relaxed text-dark-900 dark:text-white flex flex-col gap-2 sm:gap-3">
+              {featuredHindiQuote.lines.map((line, index) => (
+                <motion.span
+                  key={line}
+                  className={index % 2 === 0 ? 'self-start text-left pr-6 sm:pr-16' : 'self-end text-right pl-6 sm:pl-16'}
+                  initial={{ opacity: 0, filter: 'blur(8px)', clipPath: 'inset(0 100% 0 0)' }}
+                  whileInView={{ opacity: 1, filter: 'blur(0px)', clipPath: 'inset(0 0% 0 0)' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.15 + index * 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  {line}
+                </motion.span>
+              ))}
+            </blockquote>
+
+            {/* Author — fades in after the couplet */}
+            <motion.figcaption
+              lang="hi"
+              className="mt-5 sm:mt-6 text-right font-hindi text-base sm:text-lg text-dark-600 dark:text-dark-400"
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 + featuredHindiQuote.lines.length * 0.5 + 0.2 }}
+            >
+              — {featuredHindiQuote.author}
+            </motion.figcaption>
+
+            {/* Translation on hover / tap */}
+            <div className="min-h-[5.5rem] sm:min-h-[4.5rem] mt-4 text-center">
+              <AnimatePresence mode="wait">
+                {showMeaning ? (
+                  <motion.div
+                    key="meaning"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p className="text-sm italic text-dark-500 dark:text-dark-400">
+                      {featuredHindiQuote.transliteration.join(' ')}
+                    </p>
+                    <p className="mt-1 text-sm sm:text-base text-dark-700 dark:text-dark-300">
+                      {featuredHindiQuote.meaning}
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.p
+                    key="hint"
+                    className="text-xs uppercase tracking-widest text-dark-400 dark:text-dark-500"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Hover or tap for meaning
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Ornamental divider (bottom) */}
+            <div className="flex items-center gap-3 sm:gap-4 mt-4" aria-hidden="true">
+              <span className="h-px flex-1" style={{ background: `linear-gradient(to right, transparent, ${currentTheme.primary}80)` }} />
+              <span className="text-lg" style={{ color: currentTheme.primary }}>❁</span>
+              <span className="h-px flex-1" style={{ background: `linear-gradient(to left, transparent, ${currentTheme.primary}80)` }} />
+            </div>
+          </figure>
         </div>
       </motion.div>
     </section>

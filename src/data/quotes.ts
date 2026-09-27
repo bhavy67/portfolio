@@ -68,3 +68,11 @@ export const getRandomQuote = () => {
   const randomIndex = Math.floor(Math.random() * inspirationalQuotes.length);
   return inspirationalQuotes[randomIndex];
 };
+
+// Featured Hindi quote shown in the Contact section
+export const featuredHindiQuote = {
+  lines: ['मंज़िल मिलेगी, भटक कर ही सही,', 'गुमराह तो वो हैं, जो घर से निकले ही नहीं।'],
+  author: 'मिर्ज़ा ग़ालिब',
+  transliteration: ['Manzil milegi, bhatak kar hi sahi,', 'gumraah toh woh hain, jo ghar se nikle hi nahin.'],
+  meaning: "You'll reach your destination, even if you wander on the way — the truly lost are those who never left home.",
+};
