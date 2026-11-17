@@ -44,7 +44,7 @@ const Hero = () => {
         
         {/* Minimal Animated Shapes with theme colors - Constrained to viewport */}
         <motion.div
-          className="hidden sm:block absolute top-20 left-10 w-72 h-72 bg-primary-400/10 dark:bg-primary-600/10 rounded-full blur-3xl"
+          className="hidden sm:block mono:hidden absolute top-20 left-10 w-72 h-72 bg-primary-400/10 dark:bg-primary-600/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.1, 1],
             x: [0, 30, 0],
@@ -57,7 +57,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="hidden sm:block absolute bottom-20 right-10 w-72 h-72 bg-accent-400/10 dark:bg-accent-600/10 rounded-full blur-3xl"
+          className="hidden sm:block mono:hidden absolute bottom-20 right-10 w-72 h-72 bg-accent-400/10 dark:bg-accent-600/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.1, 1],
             x: [0, -30, 0],
@@ -70,7 +70,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-300/20 dark:bg-primary-700/20 rounded-full blur-3xl"
+          className="hidden sm:block mono:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-300/20 dark:bg-primary-700/20 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.05, 1],
             rotate: [0, 180, 360],

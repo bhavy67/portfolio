@@ -65,13 +65,6 @@ const Blogs = () => {
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   whileHover={{ y: -8 }}
                 >
-                  {/* Featured Badge */}
-                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
-                    <span className="px-2.5 py-1 sm:px-3 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 text-white text-xs font-bold shadow-lg">
-                      Featured
-                    </span>
-                  </div>
-
                   {/* Blog Image */}
                   <div className="relative h-48 sm:h-56 overflow-hidden bg-dark-900">
                     <motion.img

@@ -203,7 +203,7 @@ const ThemeSwitcher = () => {
             <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
 
             <motion.div
-              className="absolute right-0 top-14 w-64 max-w-[calc(100vw-2rem)] glass rounded-2xl shadow-2xl z-50 overflow-hidden"
+              className="absolute right-0 top-14 w-72 max-w-[calc(100vw-2rem)] bg-white dark:bg-dark-900 border border-dark-200 dark:border-dark-700 rounded-2xl shadow-2xl z-50 overflow-hidden"
               initial={{ opacity: 0, y: -12, scale: 0.94 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.96 }}
@@ -226,7 +226,7 @@ const ThemeSwitcher = () => {
                       <div className="flex-1 h-px bg-dark-200 dark:bg-dark-700" />
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-4 gap-2">
                       {items.map((theme) => {
                         const isActive = currentTheme.id === theme.id;
                         return (
@@ -251,7 +251,7 @@ const ThemeSwitcher = () => {
                           >
                             {/* Gradient swatch — taller for easier touch targeting */}
                             <div
-                              className="h-10 w-full"
+                              className="h-9 w-full rounded-t-xl ring-1 ring-inset ring-black/10 dark:ring-white/10"
                               style={{
                                 background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.accent} 100%)`,
                               }}
@@ -263,7 +263,7 @@ const ThemeSwitcher = () => {
                                   transition={{ type: 'spring', stiffness: 500, damping: 18 }}
                                   className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-white/90 flex items-center justify-center shadow-sm"
                                 >
-                                  <HiCheck className="w-2.5 h-2.5" style={{ color: theme.primary }} />
+                                  <HiCheck className="w-2.5 h-2.5" style={{ color: theme.mono ? '#0A0A0A' : theme.primary }} />
                                 </motion.div>
                               )}
                             </div>

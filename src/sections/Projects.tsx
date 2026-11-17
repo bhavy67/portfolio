@@ -74,15 +74,6 @@ const Projects = () => {
               className="card overflow-hidden group cursor-pointer block"
               whileHover={{ y: -10 }}
             >
-              {/* Featured Badge */}
-              {project.featured && (
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="px-3 py-1 rounded-full bg-primary-600 text-white text-xs font-bold shadow-lg">
-                    Featured
-                  </span>
-                </div>
-              )}
-
               {/* Project Image */}
               <div className="relative h-52 overflow-hidden bg-dark-900">
                 <motion.img

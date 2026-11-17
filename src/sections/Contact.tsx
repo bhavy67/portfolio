@@ -94,7 +94,7 @@ const Contact = () => {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="group inline-flex items-center gap-2 rounded-full bg-primary-600 px-6 py-3.5 font-semibold text-white transition-transform hover:bg-primary-700 active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-full bg-primary-600 px-6 py-3.5 font-semibold text-on-primary transition-transform hover:bg-primary-700 active:scale-[0.98]"
             >
               <FiMail size={18} />
               Get in touch

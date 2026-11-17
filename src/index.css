@@ -11,6 +11,34 @@
     --color-accent: #A855F7;
     --color-background: #FFFFFF;
     --color-text: #1E293B;
+
+    /* Neutral scale (Tailwind slate) — the `dark-*` palette reads these */
+    --dark-50: 248 250 252;
+    --dark-100: 241 245 249;
+    --dark-200: 226 232 240;
+    --dark-300: 203 213 225;
+    --dark-400: 148 163 184;
+    --dark-500: 100 116 139;
+    --dark-600: 71 85 105;
+    --dark-700: 51 65 85;
+    --dark-800: 30 41 59;
+    --dark-900: 15 23 42;
+    --dark-950: 2 6 23;
+  }
+
+  /* Mono themes (Ink / Chalk): true grays, no blue tint */
+  html.mono {
+    --dark-50: 250 250 250;
+    --dark-100: 245 245 245;
+    --dark-200: 229 229 229;
+    --dark-300: 212 212 212;
+    --dark-400: 163 163 163;
+    --dark-500: 115 115 115;
+    --dark-600: 82 82 82;
+    --dark-700: 38 38 38;
+    --dark-800: 23 23 23;
+    --dark-900: 15 15 15;
+    --dark-950: 8 8 8;
   }
 
   * {
@@ -32,7 +60,7 @@
 
   ::selection {
     background-color: var(--color-primary);
-    color: #ffffff;
+    color: rgb(var(--on-primary));
   }
 
   /* Custom Scrollbar */
@@ -84,7 +112,7 @@
   /* Button Styles */
   .btn-primary {
     @apply px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base;
-    @apply bg-primary-600 text-white;
+    @apply bg-primary-600 text-on-primary;
     @apply hover:bg-primary-700 active:bg-primary-800;
     @apply transition-all duration-300;
     @apply shadow-lg hover:shadow-xl;
@@ -94,7 +122,7 @@
   .btn-secondary {
     @apply px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base;
     @apply bg-transparent border-2 border-primary-600 text-primary-600;
-    @apply hover:bg-primary-600 hover:text-white;
+    @apply hover:bg-primary-600 hover:text-on-primary;
     @apply transition-all duration-300;
   }
 
@@ -134,3 +162,24 @@
   }
 }
 
+/* ===== Mono themes ===== */
+
+/* Drain the few hardcoded hues (status dots, heart, loader, Spotify) */
+html.mono [class*="-green-"],
+html.mono [class*="-emerald-"],
+html.mono [class*="-cyan-"],
+html.mono [class*="-red-"],
+html.mono [class*="-yellow-"],
+html.mono [class*="1DB954"] {
+  filter: grayscale(1);
+}
+
+/* Images go black & white; colour comes back on hover */
+html.mono img {
+  filter: grayscale(1);
+  transition: filter 0.4s ease;
+}
+html.mono img:hover,
+html.mono .group:hover img {
+  filter: none;
+}
