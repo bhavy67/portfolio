@@ -1,17 +1,14 @@
 import { motion } from 'framer-motion';
-import type { IconType } from 'react-icons';
-import * as SimpleIcons from 'react-icons/si';
+import { FiCode } from 'react-icons/fi';
 import { skills } from '../data/personal';
 
 const categories = [
   { title: 'Frontend', data: skills.frontend },
+  { title: 'Mobile & Desktop', data: skills.mobile },
   { title: 'Backend', data: skills.backend },
   { title: 'Database', data: skills.database },
   { title: 'Tools & DevOps', data: skills.tools },
 ];
-
-const getIcon = (iconName: string): IconType =>
-  (SimpleIcons as any)[iconName] || SimpleIcons.SiJavascript;
 
 const Skills = () => {
   return (
@@ -62,7 +59,8 @@ const Skills = () => {
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {category.data.map((skill, index) => {
-                  const Icon = getIcon(skill.icon);
+                  // Generic glyph for tools without a Simple Icons logo (e.g. Zustand, Playwright)
+                  const Icon = skill.icon ?? FiCode;
                   return (
                     <motion.div
                       key={skill.name}
