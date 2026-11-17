@@ -53,7 +53,7 @@
   },
   "assets": {
     "resume": "/src/assets/BhavyLadani_SoftwareDeveloper.pdf",
-    "profileImage": "/src/assets/Bhavy_Ladani_Profile_Image.jpg",
+    "profileImage": "/src/assets/Bhavy_Ladani_Profile_image.jpg",
     "ogImage": "https://bhavyladani.vercel.app/og-image.jpg"
   },
   "meta": {

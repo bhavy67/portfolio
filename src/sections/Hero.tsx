@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
 import { SiHashnode } from 'react-icons/si';
 import { personalInfo } from '../data/personal';
+import profileCutout from '../assets/profile-cutout.webp';
 
 const Hero = () => {
   const socialLinks = [
@@ -167,49 +168,25 @@ const Hero = () => {
 
           {/* Right Content - Profile Image */}
           <motion.div
-            className="relative order-first lg:order-last overflow-hidden"
+            className="relative order-first lg:order-last"
             variants={itemVariants}
           >
-            <div className="relative w-48 sm:w-64 md:w-80 mx-auto">
-              {/* Decorative Elements - Constrained */}
-              <motion.div
-                className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-primary-600 via-accent-600 to-primary-700 rounded-full blur-2xl opacity-30"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 45, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-              />
-              
-              {/* Profile Image */}
-              <motion.div
-                className="relative rounded-full overflow-hidden aspect-square border-2 sm:border-4 md:border-8 border-white dark:border-dark-800 shadow-2xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
+            <figure className="w-44 sm:w-60 lg:w-72 mx-auto">
+              <div className="aspect-square rounded-full overflow-hidden bg-dark-100 dark:bg-dark-800 ring-1 ring-black/10 dark:ring-white/10 ring-offset-4 sm:ring-offset-8 ring-offset-transparent">
                 <img
-                  src={personalInfo.profileImage}
+                  src={profileCutout}
                   alt={personalInfo.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover scale-[1.15] translate-y-[6%] origin-top"
                 />
-              </motion.div>
-
-              {/* Floating Badge */}
-              <motion.div
-                className="absolute -bottom-1 -right-1 sm:-bottom-4 sm:-right-4 glass rounded-lg sm:rounded-2xl p-2 sm:p-4 shadow-xl"
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                <p className="text-lg sm:text-3xl font-bold text-primary-600">4+</p>
-                <p className="text-[10px] sm:text-sm text-dark-600 dark:text-dark-400">Years Exp</p>
-              </motion.div>
-            </div>
+              </div>
+              <figcaption className="mt-4 flex flex-col items-center gap-1 text-[11px] sm:text-xs text-dark-500 dark:text-dark-400">
+                <span>{personalInfo.location}</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  {personalInfo.availability.label}
+                </span>
+              </figcaption>
+            </figure>
           </motion.div>
         </motion.div>
 
